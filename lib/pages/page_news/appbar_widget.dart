@@ -14,10 +14,9 @@ class NewsAppBarHeight extends PreferredSize {
     Widget view = childView;
     if (childView == null) {
       view = LimitedBox(
-        maxWidth: 0.0,
-        maxHeight: 0.0,
-        child: ConstrainedBox(constraints: const BoxConstraints.expand()),
-      );
+          maxWidth: 0.0,
+          maxHeight: 0.0,
+          child: ConstrainedBox(constraints: const BoxConstraints.expand()));
     }
     return view;
   }
@@ -27,18 +26,9 @@ class NewsAppbar extends StatelessWidget {
   var hintText = [];
   final VoidCallback findClick;
   final VoidCallback hintClick;
-//  List<Widget> tabs = [
-//    Tab(text: "头条"),
-//    Tab(text: "视频"),
-//    Tab(text: "财经"),
-//    Tab(text: "娱乐"),
-//    Tab(text: "美食"),
-//    Tab(text: "科技"),
-//    Tab(text: "5G"),
-//    Tab(text: "小说"),
-//  ];
+  var bottomView;
 
-  NewsAppbar({this.hintText, this.hintClick, this.findClick});
+  NewsAppbar({this.hintText, this.hintClick, this.findClick, this.bottomView});
 
   @override
   Widget build(BuildContext context) {
@@ -109,7 +99,7 @@ class NewsAppbar extends StatelessWidget {
           ),
         )
       ],
-
+      bottom: bottomView,
     );
   }
 }
