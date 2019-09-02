@@ -14,6 +14,8 @@ class ThemeColors {
   static Color colorGrey = const Color(0xFFF5F5F5);
   static Color colorGrey_1 = const Color(0xFF818181);
 
+  ///提示性文字，状态信息，按钮等
+  static Color colorRed = Color.fromARGB(255, 226, 36, 39);
 
 
 
@@ -29,8 +31,6 @@ class ThemeColors {
   static Color colorBtnLeft = Color.fromARGB(255, 251, 156, 51);
   static Color colorBtnRight = Color.fromARGB(255, 252, 191, 50);
 
-  ///提示性文字，状态信息，按钮等
-  static Color colorRed = Color.fromARGB(255, 226, 36, 39);
 
   ///功能性较强的文字，内页标题等
   static Color color333333 = Color.fromARGB(255, 51, 51, 51);

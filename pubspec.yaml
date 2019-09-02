@@ -52,68 +52,68 @@ flutter:
     - images/icon_find.png
     - images/icon_news_search.png
 
-    - images/2.0x/news/news_1.png
-    - images/2.0x/news/news_2.png
-    - images/2.0x/news/news_3.png
-    - images/2.0x/news/news_4.png
-    - images/2.0x/news/news_5.png
-    - images/2.0x/news/news_6.png
-    - images/2.0x/news/news_7.png
-    - images/2.0x/news/news_8.png
-    - images/2.0x/news/news_9.png
-    - images/2.0x/news/news_10.png
-    - images/2.0x/news/news_11.png
-    - images/2.0x/news/news_12.png
-    - images/2.0x/news/news_13.png
-    - images/2.0x/news/news_14.png
-    - images/2.0x/news/news_15.png
-
-    - images/2.0x/video/video_1.png
-    - images/2.0x/video/video_2.png
-    - images/2.0x/video/video_3.png
-    - images/2.0x/video/video_4.png
-    - images/2.0x/video/video_5.png
-    - images/2.0x/video/video_6.png
-    - images/2.0x/video/video_7.png
-    - images/2.0x/video/video_8.png
-    - images/2.0x/video/video_9.png
-    - images/2.0x/video/video_10.png
-    - images/2.0x/video/video_11.png
-    - images/2.0x/video/video_12.png
-    - images/2.0x/video/video_13.png
-    - images/2.0x/video/video_14.png
-    - images/2.0x/video/video_15.png
-
-    - images/2.0x/square/square_1.png
-    - images/2.0x/square/square_2.png
-    - images/2.0x/square/square_3.png
-    - images/2.0x/square/square_4.png
-    - images/2.0x/square/square_5.png
-    - images/2.0x/square/square_6.png
-    - images/2.0x/square/square_7.png
-    - images/2.0x/square/square_8.png
-    - images/2.0x/square/square_9.png
-    - images/2.0x/square/square_10.png
-    - images/2.0x/square/square_11.png
-    - images/2.0x/square/square_12.png
-    - images/2.0x/square/square_13.png
-    - images/2.0x/square/square_14.png
-
-    - images/2.0x/account/account_1.png
-    - images/2.0x/account/account_2.png
-    - images/2.0x/account/account_3.png
-    - images/2.0x/account/account_4.png
-    - images/2.0x/account/account_5.png
-    - images/2.0x/account/account_6.png
-    - images/2.0x/account/account_7.png
-    - images/2.0x/account/account_8.png
-    - images/2.0x/account/account_9.png
-    - images/2.0x/account/account_10.png
-    - images/2.0x/account/account_11.png
-    - images/2.0x/account/account_12.png
-    - images/2.0x/account/account_13.png
-    - images/2.0x/account/account_14.png
-    - images/2.0x/account/account_15.png
+#    - images/2.0x/news/news_1.png
+#    - images/2.0x/news/news_2.png
+#    - images/2.0x/news/news_3.png
+#    - images/2.0x/news/news_4.png
+#    - images/2.0x/news/news_5.png
+#    - images/2.0x/news/news_6.png
+#    - images/2.0x/news/news_7.png
+#    - images/2.0x/news/news_8.png
+#    - images/2.0x/news/news_9.png
+#    - images/2.0x/news/news_10.png
+#    - images/2.0x/news/news_11.png
+#    - images/2.0x/news/news_12.png
+#    - images/2.0x/news/news_13.png
+#    - images/2.0x/news/news_14.png
+#    - images/2.0x/news/news_15.png
+#
+#    - images/2.0x/video/video_1.png
+#    - images/2.0x/video/video_2.png
+#    - images/2.0x/video/video_3.png
+#    - images/2.0x/video/video_4.png
+#    - images/2.0x/video/video_5.png
+#    - images/2.0x/video/video_6.png
+#    - images/2.0x/video/video_7.png
+#    - images/2.0x/video/video_8.png
+#    - images/2.0x/video/video_9.png
+#    - images/2.0x/video/video_10.png
+#    - images/2.0x/video/video_11.png
+#    - images/2.0x/video/video_12.png
+#    - images/2.0x/video/video_13.png
+#    - images/2.0x/video/video_14.png
+#    - images/2.0x/video/video_15.png
+#
+#    - images/2.0x/square/square_1.png
+#    - images/2.0x/square/square_2.png
+#    - images/2.0x/square/square_3.png
+#    - images/2.0x/square/square_4.png
+#    - images/2.0x/square/square_5.png
+#    - images/2.0x/square/square_6.png
+#    - images/2.0x/square/square_7.png
+#    - images/2.0x/square/square_8.png
+#    - images/2.0x/square/square_9.png
+#    - images/2.0x/square/square_10.png
+#    - images/2.0x/square/square_11.png
+#    - images/2.0x/square/square_12.png
+#    - images/2.0x/square/square_13.png
+#    - images/2.0x/square/square_14.png
+#
+#    - images/2.0x/account/account_1.png
+#    - images/2.0x/account/account_2.png
+#    - images/2.0x/account/account_3.png
+#    - images/2.0x/account/account_4.png
+#    - images/2.0x/account/account_5.png
+#    - images/2.0x/account/account_6.png
+#    - images/2.0x/account/account_7.png
+#    - images/2.0x/account/account_8.png
+#    - images/2.0x/account/account_9.png
+#    - images/2.0x/account/account_10.png
+#    - images/2.0x/account/account_11.png
+#    - images/2.0x/account/account_12.png
+#    - images/2.0x/account/account_13.png
+#    - images/2.0x/account/account_14.png
+#    - images/2.0x/account/account_15.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

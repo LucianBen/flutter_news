@@ -59,7 +59,7 @@ class NewsAppbar extends StatelessWidget {
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       color: ThemeColors.colorGrey_1,
-                      fontSize: ScreenUtil().setSp(50)),
+                      fontSize: ScreenUtil().setSp(40)),
                 ),
               )
             ],

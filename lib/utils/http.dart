@@ -57,8 +57,10 @@ Future getRequset(String url,
     otherUrl = otherUrl + "&pullNum=$pullNum";
   }
 
+  Dio dio = Dio();
+  dio.options.responseType = ResponseType.plain;
   try {
-    Response response = await Dio().get(kindUrl[url] + otherUrl);
+    Response response = await dio.get(kindUrl[url] + otherUrl);
     if (response.statusCode == 200) {
       return response.data;
     } else
