@@ -23,6 +23,7 @@ class NewsHeadline extends StatelessWidget {
           var data = json.decode(snapshot.data.toString());
           List<Map> topItems = (data[0]['item'] as List).cast(); //置顶新闻
           List<Map> newsItems = (data[1]['item'] as List).cast(); //热点新闻
+          newsItems.addAll(topItems);
           return Column(
             children: <Widget>[
               NewsHeadlineSwiper(swiperImages),
