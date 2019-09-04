@@ -9,8 +9,8 @@ import 'utils/ThemeColors.dart';
 void main() {
   runApp(MultiProvider(
     providers: [
-      ChangeNotifierProvider<MainViewpagerProvider>.value(value: MainViewpagerProvider()),
-      ChangeNotifierProvider<NewsProvider>.value(value: NewsProvider())
+      ChangeNotifierProvider.value(value: MainViewpagerProvider()),
+      ChangeNotifierProvider.value(value: NewsProvider(),)
     ],
     child: MyApp(),
   ));

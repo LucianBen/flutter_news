@@ -53,15 +53,19 @@ Future getRequset(String url,
   if (action != "") {
     otherUrl = otherUrl + "&action=$action";
   }
-  print("**************${kindUrl[url] + otherUrl}");
+
   Dio dio = Dio();
   dio.options.responseType = ResponseType.plain;
+  dio.options.connectTimeout=5000;
+  dio.options.receiveTimeout=3000;
   try {
-    Response response = await dio.get(kindUrl[url] + otherUrl);
+    Response response = await dio.get("${kindUrl[url]}${otherUrl}");
     if (response.statusCode == 200) {
       return response.data;
     } else
       throw Exception("请求出错");
+  }catch(DioError ){
+    print(DioError.gaibianmessage);
   } catch (e) {
     return print("错误原因====" + e);
   }

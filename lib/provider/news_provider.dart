@@ -10,13 +10,13 @@ class NewsProvider with ChangeNotifier {
     page++;
   }
 
-  getLoadData(List<Map> topItemList, List<Map> newNewsItemList) {
-    topItems = topItemList;
+  void getLoadData(List<Map> topItemList, List<Map> newNewsItemList) {
     newsItems.addAll(newNewsItemList);
+    topItems = topItemList;
     notifyListeners();
   }
 
-  getRefreshData(List<Map> topItemList, List<Map> newsItemList) {
+  void getRefreshData(List<Map> topItemList, List<Map> newsItemList) {
     page = 1;
     topItems = topItemList;
     newsItems = newsItemList;
