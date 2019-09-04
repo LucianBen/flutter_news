@@ -13,10 +13,13 @@ class ThemeColors {
   ///灰色
   static Color colorGrey = const Color(0xFFF5F5F5);
   static Color colorGrey_1 = const Color(0xFF818181);
+  static Color colorGrey_2 = const Color(0xCC818181);
+  static Color colorGrey_8 = const Color(0x00dedede);
 
   ///提示性文字，状态信息，按钮等
   static Color colorRed = Color.fromARGB(255, 226, 36, 39);
 
+  static Color colorPink = const Color(0xFFFFEAF1);
 
 
 

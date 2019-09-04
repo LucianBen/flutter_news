@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_news/provider/main_viewpager_provider.dart';
+import 'package:flutter_news/provider/news_provider.dart';
 import 'package:provider/provider.dart';
 
-import 'utils/ThemeColors.dart';
 import 'main_viewpager_page.dart';
+import 'utils/ThemeColors.dart';
 
 void main() {
   runApp(MultiProvider(
     providers: [
-      Provider.value(value: 0),
-      ChangeNotifierProvider.value(value: MainViewpagerProvider()),
-
+      ChangeNotifierProvider<MainViewpagerProvider>.value(value: MainViewpagerProvider()),
+      ChangeNotifierProvider<NewsProvider>.value(value: NewsProvider())
     ],
     child: MyApp(),
   ));

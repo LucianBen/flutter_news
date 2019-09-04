@@ -45,18 +45,15 @@ const kindUrl = {
 };
 
 Future getRequset(String url,
-    {String id = "", String pullNum = "", String action = ""}) async {
-  String otherUrl = "";
+    {String id = "", int pullNum = 1, String action = ""}) async {
+  String otherUrl = "&pullNum=$pullNum";
   if (id != "") {
     otherUrl = otherUrl + "&id=$id";
   }
   if (action != "") {
     otherUrl = otherUrl + "&action=$action";
   }
-  if (pullNum != "") {
-    otherUrl = otherUrl + "&pullNum=$pullNum";
-  }
-
+  print("**************${kindUrl[url] + otherUrl}");
   Dio dio = Dio();
   dio.options.responseType = ResponseType.plain;
   try {

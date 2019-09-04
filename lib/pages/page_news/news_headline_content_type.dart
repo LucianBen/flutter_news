@@ -116,48 +116,56 @@ class NewsHeadlineItemsHot extends StatelessWidget {
       padding: EdgeInsets.all(10),
       color: ThemeColors.colorWhite,
       child: InkWell(
-        onTap: () {
-          print("===== 热点 ----------> ${itemList[index]}");
-        },
-        child: Row(
-          children: <Widget>[
-            Column(
-              children: <Widget>[
-                Stack(
-                  children: <Widget>[
-                    Text(
-                      "热点",
-                      style: TextStyle(
-                          color: ThemeColors.colorRed,
-                          fontSize: ScreenUtil().setSp(30),
-                          backgroundColor: ThemeColors.colorTheme),
-                    ),
-                    Text(
-                      itemList[index]['title'],
-                      maxLines: 2,
+          onTap: () {
+            print("===== 热点 ----------> ${itemList[index]}");
+          },
+          child: Column(
+            children: <Widget>[
+              Row(
+                children: <Widget>[
+                  Container(
+                    height: ScreenUtil().setHeight(200),
+                    width: ScreenUtil().setWidth(660),
+                    alignment: Alignment.topLeft,
+                    child: RichText(
+                      maxLines: 3,
                       overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                          color: ThemeColors.colorBlack,
-                          fontSize: ScreenUtil().setSp(40)),
+                      textAlign: TextAlign.center,
+                      text: TextSpan(
+                        text:
+                            "${itemList[index]['style']['recomReason']['reasonName']}",
+//                        text: "热点",
+                        style: TextStyle(
+                            color: ThemeColors.colorRed,
+                            fontSize: ScreenUtil().setSp(30),
+                            backgroundColor: ThemeColors.colorPink),
+                        children: <TextSpan>[
+                          TextSpan(
+                              text: "  ",
+                              style: TextStyle(
+                                  color: ThemeColors.colorBlack,
+                                  fontSize: ScreenUtil().setSp(40),
+                                  backgroundColor: ThemeColors.colorWhite)),
+                          TextSpan(
+                              text: itemList[index]['title'],
+                              style: TextStyle(
+                                  color: ThemeColors.colorBlack,
+                                  fontSize: ScreenUtil().setSp(40),
+                                  backgroundColor: ThemeColors.colorWhite))
+                        ],
+                      ),
                     ),
-                  ],
-                ),
-                Text(
-                  itemList[index]['source'],
-                  style: TextStyle(
-                      color: ThemeColors.colorBlack,
-                      fontSize: ScreenUtil().setSp(30)),
-                ),
-              ],
-            ),
-            Image.network(
-              itemList[index]['thumbnail'],
-              width: ScreenUtil().setWidth(300),
-              height: ScreenUtil().setHeight(200),
-            )
-          ],
-        ),
-      ),
+                  ),
+                  Image.network(
+                    itemList[index]['thumbnail'],
+                    width: ScreenUtil().setWidth(350),
+                    height: ScreenUtil().setHeight(200),
+                  ),
+                ],
+              ),
+              _itemBottomLayout(itemList, index)
+            ],
+          )),
     );
   }
 }
@@ -318,6 +326,12 @@ class NewsHeadlineItemsVideo extends StatelessWidget {
 
 /// 新闻-头条-内容-item的底部布局，有来源、评论和X
 Widget _itemBottomLayout(itemList, int index) {
+  String commitAll = itemList[index]['commentsall'].toString();
+  if (commitAll == "0") {
+    commitAll = "";
+  } else {
+    commitAll = "${itemList[index]['commentsall']}评";
+  }
   return Container(
     margin: EdgeInsets.only(top: 10),
     child: Stack(
@@ -333,7 +347,7 @@ Widget _itemBottomLayout(itemList, int index) {
               style: TextStyle(fontSize: ScreenUtil().setSp(30)),
             ),
             Text(
-              "    ${itemList[index]['commentsall']}评",
+              "    $commitAll",
               style: TextStyle(fontSize: ScreenUtil().setSp(30)),
             ),
           ],
