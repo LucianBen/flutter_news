@@ -21,7 +21,7 @@ class ThemeColors {
 
   static Color colorPink = const Color(0xFFFFEAF1);
 
-
+  static Color colorGreen = const Color(0xFF11D371);
 
 
 

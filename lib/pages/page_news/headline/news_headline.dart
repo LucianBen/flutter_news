@@ -9,7 +9,7 @@ import 'package:provider/provider.dart';
 import '../news_data.dart';
 import 'news_headline_content_type.dart';
 
-//新闻-头条
+///新闻-头条
 class NewsHeadline extends StatelessWidget {
   List swiperImages = [
 //    "https://d.ifengimg.com/w230_h152_q100_aix16_aiy0_aiw614_aih407_webp/x0.ifengimg.com/res/2019/3D6F15F00862AB47AA73F1E3315DD4EF596BCCC1_size51_w640_h407.jpeg.webp",

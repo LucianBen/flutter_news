@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_news/utils/ThemeColors.dart';
 
 import 'page_news/appbar_widget.dart';
+import 'page_news/entertainment/news_entertainment.dart';
+import 'page_news/finance/news_finance.dart';
 import 'page_news/headline/news_headline.dart';
+import 'page_news/novel/news_novel.dart';
 import 'page_news/video/news_video.dart';
 
 class NewsPage extends StatelessWidget {
@@ -31,12 +34,12 @@ class NewsPage extends StatelessWidget {
           children: [
             NewsHeadline(),
             NewsVideo(),
-            Icon(Icons.directions_bike),
-            Icon(Icons.directions_car),
+            NewsFinance(),
+            NewsEntertainment(),
             Icon(Icons.directions_transit),
             Icon(Icons.directions_bike),
             Icon(Icons.directions_car),
-            Icon(Icons.directions_transit),
+            NewsNovel(),
           ],
         ),
       ),
