@@ -17,8 +17,6 @@ class NewsPage extends StatelessWidget {
     Tab(text: "小说"),
   ];
 
-
-
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -26,23 +24,7 @@ class NewsPage extends StatelessWidget {
       child: Scaffold(
         appBar: NewsAppBarHeight(
           preferredSize: Size.fromHeight(90),
-          childView: NewsAppbar(
-            hintText: searchContext,
-            hintClick: () {
-              print("点击了搜索");
-            },
-            findClick: () {
-              print("点击了发现");
-            },
-            bottomView: TabBar(
-              isScrollable: true,
-              tabs: tabList,
-              indicatorColor: ThemeColors.colorTheme,
-              indicatorPadding: EdgeInsets.only(left: 20, right: 20),
-              labelColor: ThemeColors.colorTheme,
-              unselectedLabelColor: ThemeColors.colorGrey_1,
-            ),
-          ),
+          childView: _Appbar(),
         ),
         body: TabBarView(
           children: [
@@ -56,6 +38,27 @@ class NewsPage extends StatelessWidget {
             Icon(Icons.directions_transit),
           ],
         ),
+      ),
+    );
+  }
+
+  //自定义AppBar
+  Widget _Appbar() {
+    return NewsAppbar(
+      hintText: searchContext,
+      hintClick: () {
+        print("点击了搜索");
+      },
+      findClick: () {
+        print("点击了发现");
+      },
+      bottomView: TabBar(
+        isScrollable: true,
+        tabs: tabList,
+        indicatorColor: ThemeColors.colorTheme,
+        indicatorPadding: EdgeInsets.only(left: 20, right: 20),
+        labelColor: ThemeColors.colorTheme,
+        unselectedLabelColor: ThemeColors.colorGrey_1,
       ),
     );
   }

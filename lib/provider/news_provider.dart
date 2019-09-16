@@ -5,7 +5,6 @@ class NewsProvider with ChangeNotifier {
   List<Map> topItems = []; //置顶新闻
   List<Map> newsItems = []; //热点新闻
 
-
   addPage() {
     page++;
   }
@@ -17,7 +16,6 @@ class NewsProvider with ChangeNotifier {
   }
 
   void getRefreshData(List<Map> topItemList, List<Map> newsItemList) {
-    page = 1;
     topItems = topItemList;
     newsItems = newsItemList;
     notifyListeners();

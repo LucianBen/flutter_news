@@ -11,14 +11,14 @@ class NewsVideoItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        width: ScreenUtil().setWidth(1080),
-        height: ScreenUtil().setHeight(550),
+        width: ScreenUtil().setWidth(1060),
+        height: ScreenUtil().setHeight(540),
         child: Stack(
           children: <Widget>[
             Image.network(
               itemList[index]['thumbnail'],
-              width: ScreenUtil().setWidth(1080),
-              height: ScreenUtil().setHeight(540),
+              width: ScreenUtil().setWidth(1060),
+              height: ScreenUtil().setHeight(530),
               fit: BoxFit.fill,
             ),
             Center(

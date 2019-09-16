@@ -13,28 +13,24 @@ import 'utils/images_animation.dart';
 class MainViewpagerPage extends StatelessWidget {
   List<BottomNavigationBarItem> itemBars = [
     BottomNavigationBarItem(
-//      icon: Icon(Icons.access_alarm),
       icon: Image.asset("images/2.0x/news/news_1.png", width: 30, height: 30),
       title: Text("新闻"),
       activeIcon: ImagesAnimation(
           entry: ImagesAnimationEntry(1, 15, "images/2.0x/news/news_%s.png")),
     ),
     BottomNavigationBarItem(
-//      icon: Icon(Icons.access_alarm),
       icon: Image.asset("images/2.0x/video/video_1.png", width: 30, height: 30),
       title: Text("视频"),
       activeIcon: ImagesAnimation(
           entry: ImagesAnimationEntry(1, 15, "images/2.0x/video/video_%s.png")),
     ),
     BottomNavigationBarItem(
-//      icon: Icon(Icons.access_alarm),
       icon: Image.asset("images/2.0x/square/square_1.png", width: 30, height: 30),
       title: Text("广场"),
       activeIcon: ImagesAnimation(
           entry: ImagesAnimationEntry(1, 14, "images/2.0x/square/square_%s.png")),
     ),
     BottomNavigationBarItem(
-//      icon: Icon(Icons.access_alarm),
       icon: Image.asset("images/2.0x/account/account_1.png", width: 30, height: 30),
       title: Text("未登录"),
       activeIcon: ImagesAnimation(

@@ -10,7 +10,7 @@ void main() {
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider.value(value: MainViewpagerProvider()),
-      ChangeNotifierProvider.value(value: NewsProvider(),)
+      ChangeNotifierProvider.value(value: NewsProvider())
     ],
     child: MyApp(),
   ));

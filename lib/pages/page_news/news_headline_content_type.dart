@@ -130,16 +130,16 @@ class NewsHeadlineItemsHot extends StatelessWidget {
                     child: RichText(
                       maxLines: 3,
                       overflow: TextOverflow.ellipsis,
-                      textAlign: TextAlign.center,
                       text: TextSpan(
-                        text:
-                            "${itemList[index]['style']['recomReason']['reasonName']}",
-//                        text: "热点",
-                        style: TextStyle(
-                            color: ThemeColors.colorRed,
-                            fontSize: ScreenUtil().setSp(30),
-                            backgroundColor: ThemeColors.colorPink),
                         children: <TextSpan>[
+                          TextSpan(
+                            text:
+                                "${itemList[index]['style']['recomReason']['reasonName']}",
+                            style: TextStyle(
+                                color: ThemeColors.colorRed,
+                                fontSize: ScreenUtil().setSp(30),
+                                backgroundColor: ThemeColors.colorPink),
+                          ),
                           TextSpan(
                               text: "  ",
                               style: TextStyle(
