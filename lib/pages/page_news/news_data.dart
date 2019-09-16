@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter_news/provider/news_provider.dart';
 import 'package:flutter_news/utils/http.dart';
 
+/*  头条  */
 getNewHeadlines(bool isLoad, NewsProvider newsProvider) async {
   if (isLoad) {
     newsProvider.addPage(); //如果是加载，则页数加1
@@ -24,3 +25,4 @@ getNewHeadlines(bool isLoad, NewsProvider newsProvider) async {
     }
   });
 }
+/*  视频  */

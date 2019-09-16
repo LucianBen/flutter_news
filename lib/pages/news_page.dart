@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_news/utils/ThemeColors.dart';
 
 import 'page_news/appbar_widget.dart';
-import 'page_news/news_headline.dart';
+import 'page_news/headline/news_headline.dart';
+import 'page_news/video/news_video.dart';
 
 class NewsPage extends StatelessWidget {
   var searchContext = ["tou偷摸123", '889'];
@@ -29,7 +30,7 @@ class NewsPage extends StatelessWidget {
         body: TabBarView(
           children: [
             NewsHeadline(),
-            Icon(Icons.directions_transit),
+            NewsVideo(),
             Icon(Icons.directions_bike),
             Icon(Icons.directions_car),
             Icon(Icons.directions_transit),

@@ -6,7 +6,7 @@ import 'package:flutter_news/provider/news_provider.dart';
 import 'package:flutter_news/utils/http.dart';
 import 'package:provider/provider.dart';
 
-import 'news_data.dart';
+import '../news_data.dart';
 import 'news_headline_content_type.dart';
 
 //新闻-头条

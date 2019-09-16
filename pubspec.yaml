@@ -54,6 +54,11 @@ flutter:
     - images/icon_find.png
     - images/icon_news_search.png
     - images/close.png
+    - images/tag_video_item_play.png
+    - images/tag_video_list_comment.png
+    - images/tag_video_list_more_tools.png
+    - images/tag_video_support_click.png
+    - images/tag_video_support_unclick.png
 
     - images/2.0x/news/news_1.png
     - images/2.0x/news/news_2.png
