@@ -103,3 +103,46 @@ class NewsAppbar extends StatelessWidget {
     );
   }
 }
+
+class SquareAppbar extends StatelessWidget {
+  var hintText = [];
+  final VoidCallback hintClick;
+
+  SquareAppbar({this.hintText, this.hintClick});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+          border: Border(
+              bottom: BorderSide(color: ThemeColors.colorGrey_1,width: 0.5))),
+      child: Container(
+        margin: EdgeInsets.only(left: 10, right: 10, top: 30, bottom: 7),
+        alignment: Alignment.center,
+        padding: EdgeInsets.all(8),
+        width: ScreenUtil().setWidth(1080),
+        decoration: BoxDecoration(
+            color: ThemeColors.colorGrey,
+            borderRadius: BorderRadius.circular(60)),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Image.asset("images/icon_news_search.png", width: 20, height: 20),
+            InkWell(
+              onTap: hintClick,
+              child: Text(
+                "   ${hintText[0]}",
+                maxLines: 1,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    color: ThemeColors.colorGrey_1,
+                    fontSize: ScreenUtil().setSp(40)),
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
