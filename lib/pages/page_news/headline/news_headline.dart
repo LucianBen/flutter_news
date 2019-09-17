@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:flutter_news/provider/news_provider.dart';
+import 'package:flutter_news/provider/news_headlines_provider.dart';
 import 'package:flutter_news/utils/http.dart';
 import 'package:provider/provider.dart';
 
@@ -20,17 +20,17 @@ class NewsHeadline extends StatelessWidget {
   Widget build(BuildContext context) {
     var scrollController = ScrollController();
     return FutureBuilder(
-        future: getRequset("newsHeadlines",
-            id: "SYLB10,SYDT10", action: "down", pullNum: 1, temp: 'temp'),
+        future:
+            getRequset("newsHeadlines", id: "SYLB10,SYDT10", action: "down"),
         builder: (context, snapshot) {
-          return Consumer<NewsProvider>(
-            builder: (context, NewsProvider newsProvider, _) {
+          return Consumer<NewsHeadlinesProvider>(
+            builder: (context, NewsHeadlinesProvider newsHeadlinesProvider, _) {
               if (snapshot.hasData) {
-                if (newsProvider.newsItems.length <= 0) {
+                if (newsHeadlinesProvider.newsItems.length <= 0) {
                   var data = json.decode(snapshot.data.toString());
-                  newsProvider.topItems =
+                  newsHeadlinesProvider.topItems =
                       (data[0]['item'] as List).cast(); //置顶新闻
-                  newsProvider.newsItems =
+                  newsHeadlinesProvider.newsItems =
                       (data[1]['item'] as List).cast(); //热点新闻
                 }
                 return EasyRefresh(
@@ -51,25 +51,26 @@ class NewsHeadline extends StatelessWidget {
                       infoText: '加载中...',
                     ),
                     onLoad: () async {
-                      getNewHeadlines(true, newsProvider);
+                      getNewHeadlines(true, newsHeadlinesProvider);
                     },
                     onRefresh: () async {
-                      getNewHeadlines(false, newsProvider);
+                      getNewHeadlines(false, newsHeadlinesProvider);
                     },
-                    child: _simpleListView(newsProvider, scrollController));
+                    child: _simpleListView(
+                        newsHeadlinesProvider, scrollController));
               } else {
                 return InkWell(
                   onTap: () {
                     getRequset("newsHeadlines",
                             id: "SYLB10,SYDT10", action: "down", pullNum: 1)
                         .then((val) {
-                      print("+++++++++++++++onRefresh ${newsProvider.page}");
+//                      print("+++++++++++++++onRefresh ${newsHeadlinesProvider.page}");
                       var data = json.decode(val.toString());
                       List<Map> topItems =
                           (data[0]['item'] as List).cast(); //置顶新闻
                       List<Map> newsItems =
                           (data[1]['item'] as List).cast(); //热点新闻
-                      newsProvider.getRefreshData(topItems, newsItems);
+                      newsHeadlinesProvider.getRefreshData(topItems, newsItems);
                     });
                   },
                   child: Text("暂无数据"),
@@ -80,7 +81,8 @@ class NewsHeadline extends StatelessWidget {
         });
   }
 
-  Widget _simpleListView(NewsProvider newsProvider, scrollController) {
+  Widget _simpleListView(
+      NewsHeadlinesProvider newsHeadlinesProvider, scrollController) {
     return ListView(
       children: <Widget>[
         NewsHeadlineSwiper(swiperImages),
@@ -91,9 +93,9 @@ class NewsHeadline extends StatelessWidget {
           physics: NeverScrollableScrollPhysics(),
           scrollDirection: Axis.vertical,
           controller: scrollController,
-          itemCount: newsProvider.topItems.length,
+          itemCount: newsHeadlinesProvider.topItems.length,
           itemBuilder: (context, index) {
-            return NewsHeadlineTop(newsProvider.topItems, index);
+            return NewsHeadlineTop(newsHeadlinesProvider.topItems, index);
           },
         ),
         ListView.builder(
@@ -101,24 +103,32 @@ class NewsHeadline extends StatelessWidget {
           shrinkWrap: true,
           physics: NeverScrollableScrollPhysics(),
           controller: scrollController,
-          itemCount: newsProvider.newsItems.length,
+          itemCount: newsHeadlinesProvider.newsItems.length,
           itemBuilder: (context, index) {
-            if (newsProvider.newsItems[index]['showType'] == '0' &&
-                newsProvider.newsItems[index]['style']['recomReason'] != null) {
+            if (newsHeadlinesProvider.newsItems[index]['showType'] == '0' &&
+                newsHeadlinesProvider.newsItems[index]['style']
+                        ['recomReason'] !=
+                    null) {
               //热点展示
-              return NewsHeadlineItemsHot(newsProvider.newsItems, index);
-            } else if (newsProvider.newsItems[index]['showType'] == '0' &&
-                newsProvider.newsItems[index]['hasSlide'] == null) {
+              return NewsHeadlineItemsHot(
+                  newsHeadlinesProvider.newsItems, index);
+            } else if (newsHeadlinesProvider.newsItems[index]['showType'] ==
+                    '0' &&
+                newsHeadlinesProvider.newsItems[index]['hasSlide'] == null) {
               //单图展示
               return NewsHeadlineItemsSingleImage(
-                  newsProvider.newsItems, index);
-            } else if (newsProvider.newsItems[index]['showType'] == '0' &&
-                newsProvider.newsItems[index]['hasSlide'] == true) {
+                  newsHeadlinesProvider.newsItems, index);
+            } else if (newsHeadlinesProvider.newsItems[index]['showType'] ==
+                    '0' &&
+                newsHeadlinesProvider.newsItems[index]['hasSlide'] == true) {
               //三图展示
-              return NewsHeadlineItemsSlideImage(newsProvider.newsItems, index);
-            } else if (newsProvider.newsItems[index]['showType'] == '1') {
+              return NewsHeadlineItemsSlideImage(
+                  newsHeadlinesProvider.newsItems, index);
+            } else if (newsHeadlinesProvider.newsItems[index]['showType'] ==
+                '1') {
               //视频展示
-              return NewsHeadlineItemsVideo(newsProvider.newsItems, index);
+              return NewsHeadlineItemsVideo(
+                  newsHeadlinesProvider.newsItems, index);
             } else {
               return Container();
             }

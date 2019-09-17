@@ -45,7 +45,7 @@ const kindUrl = {
 };
 
 Future getRequset(String url,
-    {String id = "", int pullNum = 1, String action = "",String temp=''}) async {
+    {String id = "", int pullNum = 1, String action = ""}) async {
   String otherUrl = "&pullNum=$pullNum";
   if (id != "") {
     otherUrl = otherUrl + "&id=$id";
@@ -58,7 +58,7 @@ Future getRequset(String url,
   dio.options.responseType = ResponseType.plain;
   dio.options.connectTimeout=5000;
   dio.options.receiveTimeout=3000;
-  print("------------------$temp   $pullNum");
+  print("------------------${kindUrl[url]}$otherUrl");
   try {
     Response response = await dio.get("${kindUrl[url]}$otherUrl");
     if (response.statusCode == 200) {
