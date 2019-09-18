@@ -6,6 +6,7 @@ import 'package:flutter_news/provider/news_headlines_provider.dart';
 import 'package:flutter_news/utils/http.dart';
 import 'package:provider/provider.dart';
 
+import '../../no_data.dart';
 import '../news_data.dart';
 import 'news_headline_content_type.dart';
 
@@ -73,7 +74,7 @@ class NewsHeadline extends StatelessWidget {
                       newsHeadlinesProvider.getRefreshData(topItems, newsItems);
                     });
                   },
-                  child: Text("暂无数据"),
+                  child: Nodata(),
                 );
               }
             },

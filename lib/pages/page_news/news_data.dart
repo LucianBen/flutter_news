@@ -1,6 +1,8 @@
 import 'dart:convert';
 
+import 'package:flutter_news/model/NewsFinanceModel.dart';
 import 'package:flutter_news/model/NewsVideoModel.dart';
+import 'package:flutter_news/provider/news_finance_provider.dart';
 import 'package:flutter_news/provider/news_headlines_provider.dart';
 import 'package:flutter_news/provider/news_video_provider.dart';
 import 'package:flutter_news/utils/http.dart';
@@ -51,6 +53,39 @@ getNewsVideo(bool isLoad, NewsVideoProvider newsVideoProvider) async {
         newsVideoProvider.getLoadVideoData(newsVideoItems);
       } else {
         newsVideoProvider.getRefreshVideoData(newsVideoItems);
+      }
+    }
+  });
+}
+
+/*  财经  */
+getNewsFinance(bool isLoad, NewsFinanceProvider newsFinanceProvider) async {
+  if (isLoad) {
+    newsFinanceProvider.addPage(); //如果是加载，则页数加1
+  } else {
+    newsFinanceProvider.page = 1;
+  }
+  await getRequset("newsFinance",
+          id: "CJ33,FOCUSCJ33",
+          action: "down",
+          pullNum: newsFinanceProvider.page)
+      .then((val) {
+    if (val != null) {
+      var data = json.decode(val.toString());
+
+      List<NewsFinanceLiveRoomModel> newsFinanceLiveRoomItems =
+          (data[0]['item'] as List)
+              .map((i) => NewsFinanceLiveRoomModel.fromJson(i))
+              .toList(); //财经新闻直播室
+      List<NewsListModel> newsFinanceItems = (data[1]['item'] as List)
+          .map((i) => NewsListModel.fromJson(i))
+          .toList(); //财经新闻列表
+      if (isLoad) {
+        newsFinanceProvider.getLoadFinanceData(
+            newsFinanceLiveRoomItems, newsFinanceItems);
+      } else {
+        newsFinanceProvider.getRefreshFinanceData(
+            newsFinanceLiveRoomItems, newsFinanceItems);
       }
     }
   });

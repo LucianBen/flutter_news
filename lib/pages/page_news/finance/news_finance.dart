@@ -1,107 +1,89 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_news/utils/ThemeColors.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:flutter_news/model/NewsFinanceModel.dart';
+import 'package:flutter_news/provider/news_finance_provider.dart';
+import 'package:flutter_news/utils/http.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
+
+import '../../no_data.dart';
+import '../news_data.dart';
+import '../news_item.dart';
+import 'finance_item.dart';
 
 ///新闻-财经
 class NewsFinance extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: ThemeColors.colorWhite,
-      child: ListView(
-        children: <Widget>[
-          fundIndex(),
-          liveRoom(),
-          financeNewsList(),
-        ],
-      ),
+      height: ScreenUtil().setHeight(1920),
+      width: ScreenUtil().setWidth(1080),
+      child: NetArchitecture(),
     );
   }
-}
 
-//基金板块
-Widget fundIndex() {
-  return Container(
-    width: ScreenUtil().setWidth(1080),
-    height: ScreenUtil().setHeight(280),
-    alignment: Alignment.center,
-    decoration: BoxDecoration(
-        border: Border(bottom: BorderSide(color: ThemeColors.colorBackground))),
-    child: Row(
+  Widget NetArchitecture() {
+    return FutureBuilder(
+      future: getRequset("newsFinance", id: "CJ33,FOCUSCJ33", action: "down"),
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          List dataLiveRoom = json.decode(snapshot.data.toString())[0]['item'];
+          List dataNewsList = json.decode(snapshot.data.toString())[1]['item'];
+          return Consumer<NewsFinanceProvider>(
+              builder: (context, NewsFinanceProvider newsFinanceProvider, _) {
+            if (newsFinanceProvider.newsFinanceListItem.length <= 0) {
+              newsFinanceProvider.newsFinanceListItem =
+                  dataNewsList.map((i) => NewsListModel.fromJson(i)).toList();
+              newsFinanceProvider.newsFinanceLiveRoomItem = dataLiveRoom
+                  .map((i) => NewsFinanceLiveRoomModel.fromJson(i))
+                  .toList();
+            }
+
+            return NetRefreshLoad(newsFinanceProvider);
+          });
+        } else {
+          return Nodata();
+        }
+      },
+    );
+  }
+
+  Widget NetRefreshLoad(NewsFinanceProvider newsFinanceProvider) {
+    return EasyRefresh(
+        header: ClassicalHeader(
+            bgColor: Colors.white,
+            textColor: Colors.pink,
+            infoColor: Colors.pink,
+            infoText: '上次更新时间：%T',
+            refreshText: '下拉刷新',
+            refreshedText: '刷新中...',
+            refreshReadyText: '放开即刷新'),
+        footer: ClassicalFooter(
+          bgColor: Colors.white,
+          textColor: Colors.pink,
+          infoColor: Colors.pink,
+          loadedText: '上拉加载',
+          noMoreText: '',
+          infoText: '加载中...',
+        ),
+        onLoad: () async {
+          getNewsFinance(true, newsFinanceProvider);
+        },
+        onRefresh: () async {
+          getNewsFinance(false, newsFinanceProvider);
+        },
+        child: NewsFinanceBody(newsFinanceProvider));
+  }
+
+  Widget NewsFinanceBody(NewsFinanceProvider newsFinanceProvider) {
+    return ListView(
       children: <Widget>[
-        fundIndexItem(true),
-        fundIndexItem(false),
-        fundIndexItem(true),
+        FundIndex(),
+        LiveRoom(newsFinanceProvider.newsFinanceLiveRoomItem),
+        FinanceNewsList(newsFinanceProvider.newsFinanceListItem),
       ],
-    ),
-  );
-}
-
-Widget fundIndexItem(bool isRed) {
-  return Container(
-    width: ScreenUtil().setWidth(360),
-    decoration: BoxDecoration(
-        border: Border(right: BorderSide(color: ThemeColors.colorBackground))),
-    child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        Text(
-          "上证指数",
-          style: TextStyle(
-              fontSize: ScreenUtil().setSp(40), color: ThemeColors.colorBlack),
-        ),
-        Text(
-          "3034.69",
-          style: TextStyle(
-              fontSize: ScreenUtil().setSp(50),
-              color: isRed ? ThemeColors.colorRed : ThemeColors.colorGreen),
-        ),
-        Text(
-          "3.29  0.56%",
-          style: TextStyle(
-              fontSize: ScreenUtil().setSp(40),
-              color: isRed ? ThemeColors.colorRed : ThemeColors.colorGreen),
-        ),
-      ],
-    ),
-  );
-}
-
-//直播室
-Widget liveRoom() {
-  return Container(
-    padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
-    width: ScreenUtil().setWidth(1080),
-    height: ScreenUtil().setHeight(200),
-    decoration: BoxDecoration(
-        border: Border(bottom: BorderSide(color: ThemeColors.colorBackground))),
-    child: Row(
-      children: <Widget>[
-        Container(
-          width: ScreenUtil().setWidth(180),
-          alignment: Alignment.center,
-          decoration: BoxDecoration(
-              border: Border(
-                  right: BorderSide(color: ThemeColors.colorBackground))),
-          child: Image.network(
-              "https://x0.ifengimg.com/ucms/2019_34/4C95D7866CB744F34DB17650548EEEBE3ED8271A_w147_h126.png"),
-        ),
-        Container(
-          padding: EdgeInsets.fromLTRB(15, 5, 10, 5),
-          child: Text(
-            "娃哈哈",
-            style: TextStyle(
-                fontSize: ScreenUtil().setSp(45),
-                color: ThemeColors.colorBlack),
-            maxLines: 2,
-          ),
-        )
-      ],
-    ),
-  );
-}
-
-//ListView新闻
-Widget financeNewsList() {
-  return Container();
+    );
+  }
 }
