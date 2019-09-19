@@ -299,7 +299,7 @@ class NewsItemsVideo extends StatelessWidget {
   }
 }
 
-/// 新闻-头条-内容-item的底部布局，有来源、评论和关闭
+/// 新闻-内容-item的底部布局，有来源、评论和关闭
 Widget _itemBottomLayout(List<NewsListModel> itemList, int index) {
   String commitAll = itemList[index].commentsall.toString();
   if (commitAll == "0") {
@@ -342,4 +342,31 @@ Widget _itemBottomLayout(List<NewsListModel> itemList, int index) {
       ],
     ),
   );
+}
+
+/// 新闻-导航 由图片和文字组成
+class NavItem extends StatelessWidget {
+  List list = [];
+  int index = 0;
+
+  NavItem(this.list, this.index);
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () {
+        print("NavItem------------$index");
+      },
+      child: Container(
+        width: ScreenUtil().setWidth(200),
+        padding: EdgeInsets.all(10),
+        child: Column(
+          children: <Widget>[
+            Image.network(list[index].thumbnail, fit: BoxFit.fill),
+            Text(list[index].title)
+          ],
+        ),
+      ),
+    );
+  }
 }
