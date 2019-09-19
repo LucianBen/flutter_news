@@ -7,9 +7,9 @@ class NewsNovel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: 100),
+      margin: EdgeInsets.only(top: 110),
       width: ScreenUtil().setWidth(1080),
-      height: ScreenUtil().setHeight(1500),
+      height: ScreenUtil().setHeight(1920),
       child: WebviewScaffold(
         scrollBar: false,
         url: kindUrl['newsFiction'],

@@ -75,10 +75,10 @@ class NewsFinance extends StatelessWidget {
         onRefresh: () async {
           getNewsFinance(false, newsFinanceProvider);
         },
-        child: NewsFinanceBody(newsFinanceProvider));
+        child: _newsFinanceBody(newsFinanceProvider));
   }
 
-  Widget NewsFinanceBody(NewsFinanceProvider newsFinanceProvider) {
+  Widget _newsFinanceBody(NewsFinanceProvider newsFinanceProvider) {
     return ListView(
       children: <Widget>[
         FundIndex(),

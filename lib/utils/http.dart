@@ -29,7 +29,7 @@ const kindUrl = {
       configUrl,
   //新闻-美食
   "newsFood": baseUrl +
-      "nlist?id=DELIC,FOCUSDELIC&st=15669845414595&sn=fa04f09c96f0d4136509a4766993f016" +
+      "nlist?st=15669845414595&sn=fa04f09c96f0d4136509a4766993f016" +
       configUrl,
   //新闻-科技
   "newsTechnology": baseUrl +

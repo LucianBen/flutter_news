@@ -8,6 +8,7 @@ import 'package:flutter_news/model/news_video_model.dart';
 import 'package:flutter_news/provider/news_5G_provider.dart';
 import 'package:flutter_news/provider/news_entertainment_provider.dart';
 import 'package:flutter_news/provider/news_finance_provider.dart';
+import 'package:flutter_news/provider/news_food_provider.dart';
 import 'package:flutter_news/provider/news_headlines_provider.dart';
 import 'package:flutter_news/provider/news_video_provider.dart';
 import 'package:flutter_news/utils/http.dart';
@@ -125,6 +126,38 @@ getNewsEntertainment(
       } else {
         newsEntertainmentProvider.getRefreshEntertainmentData(
             newsEntertainmentNavItems, newsEntertainmentItems);
+      }
+    }
+  });
+}
+
+/*  美食  */
+getNewsFood(bool isLoad, NewsFoodProvider newsFoodProvider) async {
+  if (isLoad) {
+    newsFoodProvider.addPage(); //如果是加载，则页数加1
+  } else {
+    newsFoodProvider.page = 1;
+  }
+  await getRequset("newsFood",
+          id: "DELIC,FOCUSDELIC",
+          page: newsFoodProvider.page,
+          action: "default")
+      .then((val) {
+    if (val != null) {
+      List data = json.decode(val.toString());
+      if (data.length <= 0) {
+//        news5GProvider.getLoad5GData([]);
+        return;
+      }
+
+      List<NewsListModel> newsFoodItems = (data[0]['item'] as List)
+          .map((i) => NewsListModel.fromJson(i))
+          .toList(); //美食新闻列表
+
+      if (isLoad) {
+        newsFoodProvider.getLoadFoodData(newsFoodItems);
+      } else {
+        newsFoodProvider.getRefreshFoodData(newsFoodItems);
       }
     }
   });

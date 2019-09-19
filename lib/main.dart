@@ -8,6 +8,7 @@ import 'package:provider/provider.dart';
 
 import 'main_viewpager_page.dart';
 import 'provider/news_5G_provider.dart';
+import 'provider/news_food_provider.dart';
 import 'utils/ThemeColors.dart';
 
 void main() {
@@ -18,6 +19,7 @@ void main() {
       ChangeNotifierProvider.value(value: NewsVideoProvider()),
       ChangeNotifierProvider.value(value: NewsFinanceProvider()),
       ChangeNotifierProvider.value(value: NewsEntertainmentProvider()),
+      ChangeNotifierProvider.value(value: NewsFoodProvider()),
       ChangeNotifierProvider.value(value: News5GProvider()),
     ],
     child: MyApp(),

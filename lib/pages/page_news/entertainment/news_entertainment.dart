@@ -100,7 +100,7 @@ class NewsEntertainment extends StatelessWidget {
       List urlList = [];
       List titleList = [];
       newsEntertainmentProvider.newsEntertainmentSwiperListItem.forEach((f) {
-        if (f.type == "slide") {
+        if (f.type != "advert") {
           imageList.add(f.thumbnail);
           urlList.add(f.link.url);
           titleList.add(f.title);

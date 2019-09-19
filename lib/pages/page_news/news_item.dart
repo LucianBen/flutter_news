@@ -29,6 +29,9 @@ class NewsList extends StatelessWidget {
       return NewsItemsSingleImage(newsListItem, index);
     }
     /**   上面是全局都是单张图布局，下面根据类型不同选择不同布局*/
+    if(newsListItem[index].type=='web'){
+      return Container();
+    }
     if (newsListItem[index].showType == '0' &&
         newsListItem[index].hasSlide == null) {
       //单图展示

@@ -21,7 +21,9 @@ class NewsSwiper extends StatelessWidget {
       margin: EdgeInsets.only(
           top: imageList.length > 0 ? 10 : 0,
           bottom: imageList.length > 0 ? 10 : 0),
-      child: imageList.length > 1 ? _customSwiper() : _customSingleSwiper(),
+      child: imageList.length > 1
+          ? _customSwiper()
+          : imageList.length < 1 ? Container() : _customSingleSwiper(),
     );
   }
 
