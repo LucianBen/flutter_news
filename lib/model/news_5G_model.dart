@@ -1,5 +1,4 @@
-/*新闻列表*/
-class NewsListModel {
+class News5GModel {
   String type;
   String id;
   String thumbnail;
@@ -10,18 +9,15 @@ class NewsListModel {
   String documentId;
   String staticId;
   Style style;
-  bool hasSlide;
   String commentsUrl;
   String comments;
   String commentsall;
   Link link;
-  Phvideo phvideo;
+  String notShowDislikeReason;
   String reftype;
-  String simId;
-  String recomToken;
   String intro;
 
-  NewsListModel(
+  News5GModel(
       {this.type,
       this.id,
       this.thumbnail,
@@ -32,22 +28,20 @@ class NewsListModel {
       this.documentId,
       this.staticId,
       this.style,
-      this.hasSlide,
       this.commentsUrl,
       this.comments,
       this.commentsall,
       this.link,
+      this.notShowDislikeReason,
       this.reftype,
-      this.simId,
-      this.recomToken,
       this.intro});
 
-  NewsListModel.fromJson(Map<String, dynamic> json) {
+  News5GModel.fromJson(Map<String, dynamic> json) {
     type = json['type'];
     id = json['id'];
     thumbnail = json['thumbnail'];
     title = json['title'];
-    showType = json['showType'].toString();
+    showType = json['showType'];
     source = json['source'];
     subscribe = json['subscribe'] != null
         ? new Subscribe.fromJson(json['subscribe'])
@@ -55,16 +49,12 @@ class NewsListModel {
     documentId = json['documentId'];
     staticId = json['staticId'];
     style = json['style'] != null ? new Style.fromJson(json['style']) : null;
-    hasSlide = json['hasSlide'];
     commentsUrl = json['commentsUrl'];
     comments = json['comments'];
     commentsall = json['commentsall'];
     link = json['link'] != null ? new Link.fromJson(json['link']) : null;
-    phvideo =
-        json['phvideo'] != null ? new Phvideo.fromJson(json['phvideo']) : null;
+    notShowDislikeReason = json['notShowDislikeReason'];
     reftype = json['reftype'];
-    simId = json['simId'];
-    recomToken = json['recomToken'];
     intro = json['intro'];
   }
 
@@ -84,16 +74,14 @@ class NewsListModel {
     if (this.style != null) {
       data['style'] = this.style.toJson();
     }
-    data['hasSlide'] = this.hasSlide;
     data['commentsUrl'] = this.commentsUrl;
     data['comments'] = this.comments;
     data['commentsall'] = this.commentsall;
     if (this.link != null) {
       data['link'] = this.link.toJson();
     }
+    data['notShowDislikeReason'] = this.notShowDislikeReason;
     data['reftype'] = this.reftype;
-    data['simId'] = this.simId;
-    data['recomToken'] = this.recomToken;
     data['intro'] = this.intro;
     return data;
   }
@@ -122,38 +110,22 @@ class Subscribe {
 }
 
 class Style {
-  String type;
-  List<String> images;
   List<String> backreason;
   String defaultreason;
-  int slideCount;
   String view;
 
-  Style(
-      {this.type,
-      this.images,
-      this.backreason,
-      this.defaultreason,
-      this.slideCount,
-      this.view});
+  Style({this.backreason, this.defaultreason, this.view});
 
   Style.fromJson(Map<String, dynamic> json) {
-    type = json['type'];
-    images = json['images'] == null ? ["","",""] : json['images'].cast<String>();
-    backreason =
-        json['backreason'] == null ? [] : json['backreason'].cast<String>();
+    backreason = json['backreason'].cast<String>();
     defaultreason = json['defaultreason'];
-    slideCount = json['slideCount'];
     view = json['view'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['type'] = this.type;
-    data['images'] = this.images;
     data['backreason'] = this.backreason;
     data['defaultreason'] = this.defaultreason;
-    data['slideCount'] = this.slideCount;
     data['view'] = this.view;
     return data;
   }
@@ -180,35 +152,6 @@ class Link {
     data['url'] = this.url;
     data['openType'] = this.openType;
     data['weburl'] = this.weburl;
-    return data;
-  }
-}
-
-class Phvideo {
-  String channelName;
-  String columnid;
-  String path;
-  String filesize;
-  int length;
-
-  Phvideo(
-      {this.channelName, this.columnid, this.path, this.filesize, this.length});
-
-  Phvideo.fromJson(Map<String, dynamic> json) {
-    channelName = json['channelName'];
-    columnid = json['columnid'];
-    path = json['path'];
-    filesize = json['filesize'];
-    length = json['length'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['channelName'] = this.channelName;
-    data['columnid'] = this.columnid;
-    data['path'] = this.path;
-    data['filesize'] = this.filesize;
-    data['length'] = this.length;
     return data;
   }
 }

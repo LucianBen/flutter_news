@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_news/model/NewsVideoModel.dart';
+import 'package:flutter_news/model/news_video_model.dart';
 import 'package:flutter_news/utils/ThemeColors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

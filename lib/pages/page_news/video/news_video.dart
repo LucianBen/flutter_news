@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:flutter_news/model/NewsVideoModel.dart';
+import 'package:flutter_news/model/news_video_model.dart';
 import 'package:flutter_news/pages/page_news/news_data.dart';
 import 'package:flutter_news/provider/news_video_provider.dart';
 import 'package:flutter_news/utils/http.dart';

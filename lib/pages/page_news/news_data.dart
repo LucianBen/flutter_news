@@ -1,9 +1,11 @@
 import 'dart:convert';
 
-import 'package:flutter_news/model/NewsEntertainmentNavModel.dart';
+import 'package:flutter_news/model/news_5G_model.dart';
+import 'package:flutter_news/model/news_entertainmentNav_model.dart';
 import 'package:flutter_news/model/news_finance_model.dart';
-import 'package:flutter_news/model/NewsVideoModel.dart';
 import 'package:flutter_news/model/news_item_model.dart';
+import 'package:flutter_news/model/news_video_model.dart';
+import 'package:flutter_news/provider/news_5G_provider.dart';
 import 'package:flutter_news/provider/news_entertainment_provider.dart';
 import 'package:flutter_news/provider/news_finance_provider.dart';
 import 'package:flutter_news/provider/news_headlines_provider.dart';
@@ -123,6 +125,38 @@ getNewsEntertainment(
       } else {
         newsEntertainmentProvider.getRefreshEntertainmentData(
             newsEntertainmentNavItems, newsEntertainmentItems);
+      }
+    }
+  });
+}
+
+/*  5G  */
+getNews5G(bool isLoad, News5GProvider news5GProvider) async {
+  if (isLoad) {
+    news5GProvider.addPage(); //如果是加载，则页数加1
+  } else {
+    news5GProvider.page = 1;
+  }
+  await getRequset("news5G", id: "KJ5G,FOCUSKJ5G", page: news5GProvider.page)
+      .then((val) {
+    if (val != null) {
+      List data = json.decode(val.toString());
+      if (data.length <= 0) {
+//        news5GProvider.getLoad5GData([]);
+        return;
+      }
+
+      List<NewsListModel> news5GItems = (data[0]['item'] as List)
+          .map((i) => NewsListModel.fromJson(i))
+          .toList(); //5G新闻列表
+
+      if (isLoad) {
+        news5GProvider.getLoad5GData(news5GItems);
+      } else {
+        List<News5GModel> news5GViewpager = (data[1]['item'] as List)
+            .map((i) => News5GModel.fromJson(i))
+            .toList(); //5G新闻导航栏
+        news5GProvider.getRefresh5GData(news5GViewpager, news5GItems);
       }
     }
   });

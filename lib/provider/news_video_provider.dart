@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_news/model/NewsVideoModel.dart';
+import 'package:flutter_news/model/news_video_model.dart';
 
 /*新闻-视频 加载数据 刷新数据*/
 class NewsVideoProvider with ChangeNotifier {

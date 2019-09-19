@@ -5,10 +5,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 
 /// 新闻-轮播图
-class NewsHeadlineSwiper extends StatelessWidget {
-  final List imageList;
+class NewsSwiper extends StatelessWidget {
+  List imageList = [];
+  List titleList = [];
+  List urlList = [];
 
-  NewsHeadlineSwiper(this.imageList);
+  NewsSwiper(this.imageList, this.titleList, this.urlList);
 
   @override
   Widget build(BuildContext context) {
@@ -19,26 +21,53 @@ class NewsHeadlineSwiper extends StatelessWidget {
       margin: EdgeInsets.only(
           top: imageList.length > 0 ? 10 : 0,
           bottom: imageList.length > 0 ? 10 : 0),
-      child: Swiper(
-        scrollDirection: Axis.horizontal,
-        itemCount: imageList.length,
-        autoplay: true,
-        viewportFraction: 0.8,
-        // 当前视窗展示比例 小于1可见上一个和下一个视窗
-        scale: 0.9,
-        // 两张图片之间的间隔
-        itemBuilder: (BuildContext context, int index) {
-          return Container(
-            margin: EdgeInsets.all(2),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                image: DecorationImage(
-                    image: NetworkImage(imageList[index]), fit: BoxFit.fill)),
-          );
-        },
-        onTap: (index) {
-          print("news_body/${index}");
-        },
+      child: CustomSwiper(),
+    );
+  }
+
+  Widget CustomSwiper() {
+    return Swiper(
+      scrollDirection: Axis.horizontal,
+      itemCount: imageList.length,
+      autoplay: true,
+      viewportFraction: 0.8,
+      // 当前视窗展示比例 小于1可见上一个和下一个视窗
+      scale: 0.9,
+      // 两张图片之间的间隔
+      itemBuilder: (BuildContext context, int index) {
+        return Container(
+          margin: EdgeInsets.all(2),
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              image: DecorationImage(
+                  image: NetworkImage(imageList[index]), fit: BoxFit.fill)),
+          child: Stack(
+            children: <Widget>[
+              _SwiperText(index),
+            ],
+          ),
+        );
+      },
+      onTap: (index) {
+        print("${urlList[index]}");
+      },
+    );
+  }
+
+  Widget _SwiperText(int index) {
+    return Positioned(
+      width: ScreenUtil().setWidth(800),
+      left: 10,
+      bottom: 10,
+      child: Text(
+        "${titleList[index]}",
+        maxLines: 1,
+        overflow: TextOverflow.ellipsis,
+        style: TextStyle(
+          color: ThemeColors.colorWhite,
+          fontWeight: FontWeight.w700,
+          fontSize: ScreenUtil().setSp(43),
+        ),
       ),
     );
   }
@@ -233,7 +262,7 @@ class NewsItemsVideo extends StatelessWidget {
                     color: ThemeColors.colorGrey_2,
                   ),
                   child: Text(
-                    "${(itemList[index].phvideo.length  / 60).toStringAsFixed(2)}",
+                    "${(itemList[index].phvideo.length / 60).toStringAsFixed(2)}",
                     style: TextStyle(
                         fontSize: ScreenUtil().setSp(35),
                         color: ThemeColors.colorWhite),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_news/model/NewsEntertainmentNavModel.dart';
+import 'package:flutter_news/model/news_entertainmentNav_model.dart';
 import 'package:flutter_news/model/news_item_model.dart';
 
 class NewsEntertainmentProvider with ChangeNotifier {

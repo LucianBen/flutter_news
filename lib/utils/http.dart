@@ -29,15 +29,15 @@ const kindUrl = {
       configUrl,
   //新闻-美食
   "newsFood": baseUrl +
-      "nlist?id=DELIC,FOCUSDELIC&action=default&st=15669845414595&sn=fa04f09c96f0d4136509a4766993f016" +
+      "nlist?id=DELIC,FOCUSDELIC&st=15669845414595&sn=fa04f09c96f0d4136509a4766993f016" +
       configUrl,
   //新闻-科技
   "newsTechnology": baseUrl +
-      "nlist?id=KJ123,FOCUSKJ123,SECNAVKJ123&action=default&st=15669845768647&sn=714005c438e2b2e1a8dd954644c7feae" +
+      "nlist?id=KJ123,FOCUSKJ123,SECNAVKJ123&st=15669845768647&sn=714005c438e2b2e1a8dd954644c7feae" +
       configUrl,
   //新闻-5G
   "news5G": baseUrl +
-      "nlist?id=KJ5G,FOCUSKJ5G&page=1&st=15669847708095&sn=83cc258621610127fdc6c3d7741a3d90" +
+      "nlist?id=KJ5G,FOCUSKJ5G&st=15669847708095&sn=83cc258621610127fdc6c3d7741a3d90" +
       configUrl,
   //新闻-小说
   "newsFiction": webUrl +
@@ -45,7 +45,10 @@ const kindUrl = {
 };
 
 Future getRequset(String url,
-    {String id = "", int pullNum = 1, String action = ""}) async {
+    {String id = "",
+    int pullNum = 1,
+    String action = "",
+    int page = 0}) async {
   String otherUrl = "&pullNum=$pullNum";
   if (id != "") {
     otherUrl = otherUrl + "&id=$id";
@@ -53,11 +56,14 @@ Future getRequset(String url,
   if (action != "") {
     otherUrl = otherUrl + "&action=$action";
   }
+  if (page != 0) {
+    otherUrl = otherUrl + "&page=$page";
+  }
 
   Dio dio = Dio();
   dio.options.responseType = ResponseType.plain;
-  dio.options.connectTimeout=5000;
-  dio.options.receiveTimeout=3000;
+  dio.options.connectTimeout = 5000;
+  dio.options.receiveTimeout = 3000;
   print("------------------${kindUrl[url]}$otherUrl");
   try {
     Response response = await dio.get("${kindUrl[url]}$otherUrl");
@@ -65,7 +71,7 @@ Future getRequset(String url,
       return response.data;
     } else
       throw Exception("请求出错");
-  }catch(DioError ){
+  } catch (DioError) {
     print(DioError.message);
   } catch (e) {
     return print("错误原因====" + e);

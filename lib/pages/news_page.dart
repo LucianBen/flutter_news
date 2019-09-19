@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_news/pages/page_news/5g/news_5g.dart';
 import 'package:flutter_news/utils/ThemeColors.dart';
 
 import 'page_news/appbar_widget.dart';
@@ -38,7 +39,7 @@ class NewsPage extends StatelessWidget {
             NewsEntertainment(),
             Icon(Icons.directions_transit),
             Icon(Icons.directions_bike),
-            Icon(Icons.directions_car),
+            Gg(),
             NewsNovel(),
           ],
         ),

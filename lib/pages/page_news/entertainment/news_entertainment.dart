@@ -2,8 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:flutter_news/model/NewsEntertainmentNavModel.dart';
-import 'package:flutter_news/model/news_finance_model.dart';
+import 'package:flutter_news/model/news_entertainmentNav_model.dart';
 import 'package:flutter_news/model/news_item_model.dart';
 import 'package:flutter_news/provider/news_entertainment_provider.dart';
 import 'package:flutter_news/utils/http.dart';
@@ -27,7 +26,6 @@ class NewsEntertainment extends StatelessWidget {
           id: "YL53,FOCUSYL53,SECNAVYL53", action: "default"),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
-          snapshot.data;
           List dataNewsList = json.decode(snapshot.data.toString())[0]['item'];
           List dataEntertainmentNav =
               json.decode(snapshot.data.toString())[2]['item'];
