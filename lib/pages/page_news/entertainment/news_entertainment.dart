@@ -11,6 +11,7 @@ import 'package:provider/provider.dart';
 import '../../no_data.dart';
 import '../news_data.dart';
 import '../news_item.dart';
+import '../news_item_content_type.dart';
 import 'entertainment_item.dart';
 
 ///新闻-娱乐
@@ -27,17 +28,26 @@ class NewsEntertainment extends StatelessWidget {
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           List dataNewsList = json.decode(snapshot.data.toString())[0]['item'];
+          List dataNewsSwiperList =
+              json.decode(snapshot.data.toString())[1]['item'];
           List dataEntertainmentNav =
               json.decode(snapshot.data.toString())[2]['item'];
           return Consumer<NewsEntertainmentProvider>(builder: (context,
               NewsEntertainmentProvider newsEntertainmentProvider, _) {
             if (newsEntertainmentProvider.newsEntertainmentListItem.length <=
                 0) {
+              //娱乐新闻列表
               newsEntertainmentProvider.newsEntertainmentListItem =
                   dataNewsList.map((i) => NewsListModel.fromJson(i)).toList();
+              //娱乐新闻导航栏
               newsEntertainmentProvider.newsEntertainmentNavItem =
                   dataEntertainmentNav
                       .map((i) => NewsEntertainmentNavModel.fromJson(i))
+                      .toList();
+              //娱乐新闻Swiper
+              newsEntertainmentProvider.newsEntertainmentSwiperListItem =
+                  dataNewsSwiperList
+                      .map((i) => NewsListModel.fromJson(i))
                       .toList();
             }
 
@@ -78,11 +88,31 @@ class NewsEntertainment extends StatelessWidget {
   }
 
   Widget NewsFinanceBody(NewsEntertainmentProvider newsEntertainmentProvider) {
-    return ListView(
-      children: <Widget>[
-        EntertainmentNav(),
-        NewsList(newsEntertainmentProvider.newsEntertainmentListItem)
-      ],
-    );
+    if (newsEntertainmentProvider.newsEntertainmentSwiperListItem.length <= 0) {
+      return ListView(
+        children: <Widget>[
+          EntertainmentNav(newsEntertainmentProvider.newsEntertainmentNavItem),
+          NewsList(newsEntertainmentProvider.newsEntertainmentListItem)
+        ],
+      );
+    } else {
+      List imageList = [];
+      List urlList = [];
+      List titleList = [];
+      newsEntertainmentProvider.newsEntertainmentSwiperListItem.forEach((f) {
+        if (f.type == "slide") {
+          imageList.add(f.thumbnail);
+          urlList.add(f.link.url);
+          titleList.add(f.title);
+        }
+      });
+      return ListView(
+        children: <Widget>[
+          NewsSwiper(imageList, titleList, urlList),
+          EntertainmentNav(newsEntertainmentProvider.newsEntertainmentNavItem),
+          NewsList(newsEntertainmentProvider.newsEntertainmentListItem)
+        ],
+      );
+    }
   }
 }

@@ -11,6 +11,7 @@ class NewsEntertainmentProvider with ChangeNotifier {
 
   List<NewsEntertainmentNavModel> newsEntertainmentNavItem = []; //娱乐新闻导航
   List<NewsListModel> newsEntertainmentListItem = []; //娱乐新闻列表
+  List<NewsListModel> newsEntertainmentSwiperListItem = []; //娱乐新闻Swiper
 
   void getLoadEntertainmentData(
       List<NewsEntertainmentNavModel> newsEntertainmentNavItemList,
@@ -25,6 +26,7 @@ class NewsEntertainmentProvider with ChangeNotifier {
       List<NewsListModel> newsEntertainmentItemList) {
     newsEntertainmentNavItem = newsEntertainmentNavItemList;
     newsEntertainmentListItem = newsEntertainmentItemList;
+    newsEntertainmentSwiperListItem = [];
     notifyListeners();
   }
 }

@@ -16,31 +16,57 @@ class NewsSwiper extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: imageList.length > 0
-          ? ScreenUtil().setHeight(500)
+          ? ScreenUtil().setHeight(600)
           : ScreenUtil().setHeight(0),
       margin: EdgeInsets.only(
           top: imageList.length > 0 ? 10 : 0,
           bottom: imageList.length > 0 ? 10 : 0),
-      child: CustomSwiper(),
+      child: imageList.length > 1 ? _customSwiper() : _customSingleSwiper(),
     );
   }
 
-  Widget CustomSwiper() {
+  Widget _customSingleSwiper() {
+    return InkWell(
+      onTap: () {
+        print("点击了SwiperSingle---${urlList[0]}");
+      },
+      child: Stack(
+        children: <Widget>[
+          Positioned(
+            left: 10,
+            top: 0,
+            child: Container(
+              width: ScreenUtil().setWidth(1020),
+              height: ScreenUtil().setHeight(600),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  image: DecorationImage(
+                      image: NetworkImage(imageList[0]), fit: BoxFit.cover)),
+            ),
+          ),
+          _SwiperText(0),
+        ],
+      ),
+    );
+  }
+
+  Widget _customSwiper() {
     return Swiper(
       scrollDirection: Axis.horizontal,
       itemCount: imageList.length,
       autoplay: true,
-      viewportFraction: 0.8,
+      viewportFraction: 0.95,
       // 当前视窗展示比例 小于1可见上一个和下一个视窗
-      scale: 0.9,
+      scale: 1.0,
       // 两张图片之间的间隔
       itemBuilder: (BuildContext context, int index) {
         return Container(
           margin: EdgeInsets.all(2),
           decoration: BoxDecoration(
+              color: ThemeColors.colorWhite,
               borderRadius: BorderRadius.circular(10),
               image: DecorationImage(
-                  image: NetworkImage(imageList[index]), fit: BoxFit.fill)),
+                  image: NetworkImage(imageList[index]), fit: BoxFit.cover)),
           child: Stack(
             children: <Widget>[
               _SwiperText(index),
