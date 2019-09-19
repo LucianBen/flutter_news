@@ -84,10 +84,10 @@ class NewsEntertainment extends StatelessWidget {
         onRefresh: () async {
           getNewsEntertainment(false, newsEntertainmentProvider);
         },
-        child: NewsFinanceBody(newsEntertainmentProvider));
+        child: _newsEntertainmentBody(newsEntertainmentProvider));
   }
 
-  Widget NewsFinanceBody(NewsEntertainmentProvider newsEntertainmentProvider) {
+  Widget _newsEntertainmentBody(NewsEntertainmentProvider newsEntertainmentProvider) {
     if (newsEntertainmentProvider.newsEntertainmentSwiperListItem.length <= 0) {
       return ListView(
         children: <Widget>[
