@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_news/model/NewsFinanceModel.dart';
+import 'package:flutter_news/model/news_finance_model.dart';
+import 'package:flutter_news/model/news_item_model.dart';
 
 /*新闻-财经 加载数据 刷新数据*/
 class NewsFinanceProvider with ChangeNotifier {

@@ -1,147 +1,3 @@
-/*直播室*/
-class NewsFinanceLiveRoomModel {
-  String type;
-  String id;
-  String thumbnail;
-  String title;
-  String documentId;
-  String staticId;
-  StyleLiveRoom style;
-  Link link;
-  String titleIcon;
-  List<MarqueeList> marqueeList;
-  String updateTime;
-  String reftype;
-  String intro;
-  String commentsall;
-
-  NewsFinanceLiveRoomModel(
-      {this.type,
-      this.id,
-      this.thumbnail,
-      this.title,
-      this.documentId,
-      this.staticId,
-      this.style,
-      this.link,
-      this.titleIcon,
-      this.marqueeList,
-      this.updateTime,
-      this.reftype,
-      this.intro,
-      this.commentsall});
-
-  NewsFinanceLiveRoomModel.fromJson(Map<String, dynamic> json) {
-    type = json['type'];
-    id = json['id'];
-    thumbnail = json['thumbnail'];
-    title = json['title'];
-    documentId = json['documentId'];
-    staticId = json['staticId'];
-    style = json['style'] != null
-        ? new StyleLiveRoom.fromJson(json['style'])
-        : null;
-    link = json['link'] != null ? new Link.fromJson(json['link']) : null;
-    titleIcon = json['titleIcon'];
-    if (json['marqueeList'] != null) {
-      marqueeList = new List<MarqueeList>();
-      json['marqueeList'].forEach((v) {
-        marqueeList.add(new MarqueeList.fromJson(v));
-      });
-    }
-    updateTime = json['updateTime'];
-    reftype = json['reftype'];
-    intro = json['intro'];
-    commentsall = json['commentsall'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['type'] = this.type;
-    data['id'] = this.id;
-    data['thumbnail'] = this.thumbnail;
-    data['title'] = this.title;
-    data['documentId'] = this.documentId;
-    data['staticId'] = this.staticId;
-    if (this.style != null) {
-      data['style'] = this.style.toJson();
-    }
-    if (this.link != null) {
-      data['link'] = this.link.toJson();
-    }
-    data['titleIcon'] = this.titleIcon;
-    if (this.marqueeList != null) {
-      data['marqueeList'] = this.marqueeList.map((v) => v.toJson()).toList();
-    }
-    data['updateTime'] = this.updateTime;
-    data['reftype'] = this.reftype;
-    data['intro'] = this.intro;
-    data['commentsall'] = this.commentsall;
-    return data;
-  }
-}
-
-class MarqueeList {
-  String title;
-  String staticId;
-  Link link;
-  String updateTime;
-  String documentId;
-  String commentsall;
-
-  MarqueeList(
-      {this.title,
-      this.staticId,
-      this.link,
-      this.updateTime,
-      this.documentId,
-      this.commentsall});
-
-  MarqueeList.fromJson(Map<String, dynamic> json) {
-    title = json['title'];
-    staticId = json['staticId'];
-    link = json['link'] != null ? new Link.fromJson(json['link']) : null;
-    updateTime = json['updateTime'];
-    documentId = json['documentId'];
-    commentsall = json['commentsall'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['title'] = this.title;
-    data['staticId'] = this.staticId;
-    if (this.link != null) {
-      data['link'] = this.link.toJson();
-    }
-    data['updateTime'] = this.updateTime;
-    data['documentId'] = this.documentId;
-    data['commentsall'] = this.commentsall;
-    return data;
-  }
-}
-
-class StyleLiveRoom {
-  String view;
-  List<String> backreason;
-  String defaultreason;
-
-  StyleLiveRoom({this.view, this.backreason, this.defaultreason});
-
-  StyleLiveRoom.fromJson(Map<String, dynamic> json) {
-    view = json['view'];
-    backreason = json['backreason'].cast<String>();
-    defaultreason = json['defaultreason'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['view'] = this.view;
-    data['backreason'] = this.backreason;
-    data['defaultreason'] = this.defaultreason;
-    return data;
-  }
-}
-
 /*新闻列表*/
 class NewsListModel {
   String type;
@@ -191,7 +47,7 @@ class NewsListModel {
     id = json['id'];
     thumbnail = json['thumbnail'];
     title = json['title'];
-    showType = json['showType'];
+    showType = json['showType'].toString();
     source = json['source'];
     subscribe = json['subscribe'] != null
         ? new Subscribe.fromJson(json['subscribe'])
@@ -204,7 +60,8 @@ class NewsListModel {
     comments = json['comments'];
     commentsall = json['commentsall'];
     link = json['link'] != null ? new Link.fromJson(json['link']) : null;
-    phvideo = json['phvideo'] != null ? new Phvideo.fromJson(json['phvideo']) : null;
+    phvideo =
+        json['phvideo'] != null ? new Phvideo.fromJson(json['phvideo']) : null;
     reftype = json['reftype'];
     simId = json['simId'];
     recomToken = json['recomToken'];
@@ -282,9 +139,9 @@ class Style {
 
   Style.fromJson(Map<String, dynamic> json) {
     type = json['type'];
-    images = json['images'] == null ? null : json['images'].cast<String>();
+    images = json['images'] == null ? [] : json['images'].cast<String>();
     backreason =
-        json['backreason'] == null ? null : json['backreason'].cast<String>();
+        json['backreason'] == null ? [] : json['backreason'].cast<String>();
     defaultreason = json['defaultreason'];
     slideCount = json['slideCount'];
     view = json['view'];

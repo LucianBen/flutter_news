@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_news/provider/main_viewpager_provider.dart';
+import 'package:flutter_news/provider/news_entertainment_provider.dart';
 import 'package:flutter_news/provider/news_finance_provider.dart';
 import 'package:flutter_news/provider/news_headlines_provider.dart';
 import 'package:flutter_news/provider/news_video_provider.dart';
@@ -15,6 +16,7 @@ void main() {
       ChangeNotifierProvider.value(value: NewsHeadlinesProvider()),
       ChangeNotifierProvider.value(value: NewsVideoProvider()),
       ChangeNotifierProvider.value(value: NewsFinanceProvider()),
+      ChangeNotifierProvider.value(value: NewsEntertainmentProvider()),
     ],
     child: MyApp(),
   ));

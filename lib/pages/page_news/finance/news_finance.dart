@@ -2,7 +2,8 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:flutter_news/model/NewsFinanceModel.dart';
+import 'package:flutter_news/model/news_finance_model.dart';
+import 'package:flutter_news/model/news_item_model.dart';
 import 'package:flutter_news/provider/news_finance_provider.dart';
 import 'package:flutter_news/utils/http.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -82,7 +83,7 @@ class NewsFinance extends StatelessWidget {
       children: <Widget>[
         FundIndex(),
         LiveRoom(newsFinanceProvider.newsFinanceLiveRoomItem),
-        FinanceNewsList(newsFinanceProvider.newsFinanceListItem),
+        NewsList(newsFinanceProvider.newsFinanceListItem),
       ],
     );
   }

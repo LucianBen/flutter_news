@@ -16,16 +16,16 @@ const kindUrl = {
       configUrl,
   //新闻-视频
   "newsVideo": baseUrl +
-      "nlist?id=RECOMVIDEO&action=default&st=15669759506571&sn=e358b5be9495b3eb52a562fa8a0a28d0" +
+      "nlist?st=15669759506571&sn=e358b5be9495b3eb52a562fa8a0a28d0" +
       configUrl,
   //新闻-"": baseUrl + "",
   //新闻-财经
   "newsFinance": baseUrl +
-      "nlist?id=CJ33,FOCUSCJ33&action=down&pullNum=1&st=15669756488660&sn=91c7e68b94fae7a41eecf857710f76a2" +
+      "nlist?st=15669756488660&sn=91c7e68b94fae7a41eecf857710f76a2" +
       configUrl,
   //新闻-娱乐
   "newsEntertainment": baseUrl +
-      "nlist?id=YL53,FOCUSYL53,SECNAVYL53&action=default&st=15669838796625&sn=0780eedb18da58532e8da7687ec937c3" +
+      "nlist?st=15669838796625&sn=0780eedb18da58532e8da7687ec937c3" +
       configUrl,
   //新闻-美食
   "newsFood": baseUrl +

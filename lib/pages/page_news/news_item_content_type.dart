@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_news/model/NewsFinanceModel.dart';
+import 'package:flutter_news/model/news_item_model.dart';
 import 'package:flutter_news/utils/ThemeColors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
@@ -233,7 +233,7 @@ class NewsItemsVideo extends StatelessWidget {
                     color: ThemeColors.colorGrey_2,
                   ),
                   child: Text(
-                    "${((itemList[index].phvideo.length == null ? 0 : itemList[index].phvideo.length) / 60).toStringAsFixed(2)}",
+                    "${(itemList[index].phvideo.length  / 60).toStringAsFixed(2)}",
                     style: TextStyle(
                         fontSize: ScreenUtil().setSp(35),
                         color: ThemeColors.colorWhite),
@@ -288,4 +288,3 @@ Widget _itemBottomLayout(List<NewsListModel> itemList, int index) {
     ),
   );
 }
-
