@@ -54,7 +54,7 @@ class NewsAppbar extends StatelessWidget {
               InkWell(
                 onTap: hintClick,
                 child: Text(
-                  "   ${hintText[0]}",
+                  "   ${hintText.length < 1 ? "" : hintText[0]}",
                   maxLines: 1,
                   textAlign: TextAlign.center,
                   style: TextStyle(
@@ -115,7 +115,7 @@ class SquareAppbar extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
           border: Border(
-              bottom: BorderSide(color: ThemeColors.colorGrey_1,width: 0.5))),
+              bottom: BorderSide(color: ThemeColors.colorGrey_1, width: 0.5))),
       child: Container(
         margin: EdgeInsets.only(left: 10, right: 10, top: 30, bottom: 7),
         alignment: Alignment.center,

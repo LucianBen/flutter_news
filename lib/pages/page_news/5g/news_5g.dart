@@ -24,7 +24,7 @@ class Gg extends StatelessWidget {
       future: getRequset("newsEntertainment", id: "KJ5G,FOCUSKJ5G"),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
-          List dataNewsList = json.decode(snapshot.data.toString())[0]['item'];
+          List dataNewsList = json.decode(snapshot.data.toString())[0]['item'];//新闻内容
           List dataEntertainmentNav =
               json.decode(snapshot.data.toString())[1]['item'];
           return Consumer<News5GProvider>(

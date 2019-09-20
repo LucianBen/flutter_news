@@ -45,11 +45,12 @@ const kindUrl = {
 };
 
 Future getRequset(String url,
-    {String id = "",
-    int pullNum = 1,
-    String action = "",
-    int page = 0}) async {
-  String otherUrl = "&pullNum=$pullNum";
+    {String id = "", int pullNum = 1, String action = "", int page = 0}) async {
+  String otherUrl = "";
+
+  if (pullNum != 0) {
+    otherUrl = "&pullNum=$pullNum";
+  }
   if (id != "") {
     otherUrl = otherUrl + "&id=$id";
   }

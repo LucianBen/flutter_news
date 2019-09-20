@@ -1,8 +1,12 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_news/model/news_search_model.dart';
 import 'package:flutter_news/pages/page_news/5g/news_5g.dart';
 import 'package:flutter_news/pages/page_news/food/news_food.dart';
 import 'package:flutter_news/pages/page_news/technology/news_technology.dart';
 import 'package:flutter_news/utils/ThemeColors.dart';
+import 'package:flutter_news/utils/http.dart';
 
 import 'page_news/appbar_widget.dart';
 import 'page_news/entertainment/news_entertainment.dart';
@@ -12,7 +16,7 @@ import 'page_news/novel/news_novel.dart';
 import 'page_news/video/news_video.dart';
 
 class NewsPage extends StatelessWidget {
-  var searchContext = ["tou偷摸123", '889'];
+  List newsSearchItems = [];
   List<Widget> tabList = [
     Tab(text: "头条"),
     Tab(text: "视频"),
@@ -26,33 +30,42 @@ class NewsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: tabList.length,
-      child: Scaffold(
-        appBar: NewsAppBarHeight(
-          preferredSize: Size.fromHeight(90),
-          childView: _Appbar(),
-        ),
-        body: TabBarView(
-          children: [
-            NewsHeadline(),
-            NewsVideo(),
-            NewsFinance(),
-            NewsEntertainment(),
-            NewsFood(),
-            NewsTechnology(),
-            Gg(),
-            NewsNovel(),
-          ],
-        ),
-      ),
-    );
+    return FutureBuilder(
+        future: getRequset("newsSearch", pullNum: 0),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            List data = json.decode(snapshot.data.toString());
+            newsSearchItems =
+                data.map((i) => NewsSearchModel.fromJson(i).item).toList(); //抽取新闻搜索框列表为List
+
+          }
+          return DefaultTabController(
+              length: tabList.length,
+              child: Scaffold(
+                appBar: NewsAppBarHeight(
+                  preferredSize: Size.fromHeight(90),
+                  childView: _Appbar(context),
+                ),
+                body: TabBarView(
+                  children: [
+                    NewsHeadline(),
+                    NewsVideo(),
+                    NewsFinance(),
+                    NewsEntertainment(),
+                    NewsFood(),
+                    NewsTechnology(),
+                    Gg(),
+                    NewsNovel(),
+                  ],
+                ),
+              ));
+        });
   }
 
   //自定义AppBar
-  Widget _Appbar() {
+  Widget _Appbar(BuildContext context) {
     return NewsAppbar(
-      hintText: searchContext,
+      hintText: newsSearchItems,
       hintClick: () {
         print("点击了搜索");
       },
