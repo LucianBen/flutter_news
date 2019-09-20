@@ -27,7 +27,7 @@ class NewsFinance extends StatelessWidget {
 
   Widget NetArchitecture() {
     return FutureBuilder(
-      future: getRequset("newsFinance", id: "CJ33,FOCUSCJ33", action: "down"),
+      future: getRequset("newsItems", id: "CJ33,FOCUSCJ33", action: "down"),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           List dataLiveRoom = json.decode(snapshot.data.toString())[0]['item'];

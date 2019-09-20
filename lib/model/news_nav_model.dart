@@ -1,4 +1,4 @@
-class NewsEntertainmentNavModel {
+class NewsNavModel {
   String type;
   String id;
   String thumbnail;
@@ -13,7 +13,7 @@ class NewsEntertainmentNavModel {
   String intro;
   String commentsall;
 
-  NewsEntertainmentNavModel(
+  NewsNavModel(
       {this.type,
       this.id,
       this.thumbnail,
@@ -28,7 +28,7 @@ class NewsEntertainmentNavModel {
       this.intro,
       this.commentsall});
 
-  NewsEntertainmentNavModel.fromJson(Map<String, dynamic> json) {
+  NewsNavModel.fromJson(Map<String, dynamic> json) {
     type = json['type'];
     id = json['id'];
     thumbnail = json['thumbnail'];
@@ -94,13 +94,15 @@ class Link {
   String type;
   String url;
   String weburl;
+  String title;
 
-  Link({this.type, this.url, this.weburl});
+  Link({this.type, this.url, this.weburl, this.title});
 
   Link.fromJson(Map<String, dynamic> json) {
     type = json['type'];
     url = json['url'];
     weburl = json['weburl'];
+    title = json['title'];
   }
 
   Map<String, dynamic> toJson() {
@@ -108,6 +110,7 @@ class Link {
     data['type'] = this.type;
     data['url'] = this.url;
     data['weburl'] = this.weburl;
+    data['title'] = this.title;
     return data;
   }
 }

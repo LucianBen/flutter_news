@@ -16,12 +16,12 @@ import '../news_item_content_type.dart';
 class NewsFood extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return NetArchitecture();
+    return _netArchitecture();
   }
 
-  Widget NetArchitecture() {
+  Widget _netArchitecture() {
     return FutureBuilder(
-      future: getRequset("newsFood", id: "DELIC,FOCUSDELIC", action: "default"),
+      future: getRequset("newsItems", id: "DELIC,FOCUSDELIC", action: "default"),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           List dataNewsList = json.decode(snapshot.data.toString())[0]['item'];
@@ -40,7 +40,7 @@ class NewsFood extends StatelessWidget {
                   .toList();
             }
 
-            return NetRefreshLoad(newsFoodProvider);
+            return _netRefreshLoad(newsFoodProvider);
           });
         } else {
           return Nodata();
@@ -49,7 +49,7 @@ class NewsFood extends StatelessWidget {
     );
   }
 
-  Widget NetRefreshLoad(NewsFoodProvider newsFoodProvider) {
+  Widget _netRefreshLoad(NewsFoodProvider newsFoodProvider) {
     return EasyRefresh(
         header: ClassicalHeader(
             bgColor: Colors.white,

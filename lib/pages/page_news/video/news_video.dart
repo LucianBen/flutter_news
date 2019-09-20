@@ -19,7 +19,7 @@ class NewsVideo extends StatelessWidget {
   }
 
   Widget NetArchitecture() => FutureBuilder(
-        future: getRequset("newsVideo", id: "RECOMVIDEO", action: "default"),
+        future: getRequset("newsItems", id: "RECOMVIDEO", action: "default"),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             List data = json.decode(snapshot.data.toString())[0]['item'];

@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:flutter_news/model/news_entertainmentNav_model.dart';
+import 'package:flutter_news/model/news_nav_model.dart';
 import 'package:flutter_news/model/news_item_model.dart';
 import 'package:flutter_news/provider/news_entertainment_provider.dart';
 import 'package:flutter_news/utils/http.dart';
@@ -18,12 +18,12 @@ import 'entertainment_item.dart';
 class NewsEntertainment extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return NetArchitecture();
+    return _netArchitecture();
   }
 
-  Widget NetArchitecture() {
+  Widget _netArchitecture() {
     return FutureBuilder(
-      future: getRequset("newsEntertainment",
+      future: getRequset("newsItems",
           id: "YL53,FOCUSYL53,SECNAVYL53", action: "default"),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
@@ -42,7 +42,7 @@ class NewsEntertainment extends StatelessWidget {
               //娱乐新闻导航栏
               newsEntertainmentProvider.newsEntertainmentNavItem =
                   dataEntertainmentNav
-                      .map((i) => NewsEntertainmentNavModel.fromJson(i))
+                      .map((i) => NewsNavModel.fromJson(i))
                       .toList();
               //娱乐新闻Swiper
               newsEntertainmentProvider.newsEntertainmentSwiperListItem =
@@ -51,7 +51,7 @@ class NewsEntertainment extends StatelessWidget {
                       .toList();
             }
 
-            return NetRefreshLoad(newsEntertainmentProvider);
+            return _netRefreshLoad(newsEntertainmentProvider);
           });
         } else {
           return Nodata();
@@ -60,7 +60,7 @@ class NewsEntertainment extends StatelessWidget {
     );
   }
 
-  Widget NetRefreshLoad(NewsEntertainmentProvider newsEntertainmentProvider) {
+  Widget _netRefreshLoad(NewsEntertainmentProvider newsEntertainmentProvider) {
     return EasyRefresh(
         header: ClassicalHeader(
             bgColor: Colors.white,

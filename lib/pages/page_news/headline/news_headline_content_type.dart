@@ -332,6 +332,9 @@ Widget _itemBottomLayout(itemList, int index) {
   } else {
     commitAll = "${itemList[index]['commentsall']}评";
   }
+  print("##############################${index}");
+  print("###${itemList[index]['source']}");
+  print("###${itemList[index]['subscribe']}");
   return Container(
     margin: EdgeInsets.only(top: 10),
     child: Stack(

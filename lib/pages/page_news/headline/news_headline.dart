@@ -22,7 +22,7 @@ class NewsHeadline extends StatelessWidget {
     var scrollController = ScrollController();
     return FutureBuilder(
         future:
-            getRequset("newsHeadlines", id: "SYLB10,SYDT10", action: "down"),
+            getRequset("newsItems", id: "SYLB10,SYDT10", action: "down"),
         builder: (context, snapshot) {
           return Consumer<NewsHeadlinesProvider>(
             builder: (context, NewsHeadlinesProvider newsHeadlinesProvider, _) {

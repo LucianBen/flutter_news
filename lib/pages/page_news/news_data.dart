@@ -1,15 +1,16 @@
 import 'dart:convert';
 
 import 'package:flutter_news/model/news_5G_model.dart';
-import 'package:flutter_news/model/news_entertainmentNav_model.dart';
 import 'package:flutter_news/model/news_finance_model.dart';
 import 'package:flutter_news/model/news_item_model.dart';
+import 'package:flutter_news/model/news_nav_model.dart';
 import 'package:flutter_news/model/news_video_model.dart';
 import 'package:flutter_news/provider/news_5G_provider.dart';
 import 'package:flutter_news/provider/news_entertainment_provider.dart';
 import 'package:flutter_news/provider/news_finance_provider.dart';
 import 'package:flutter_news/provider/news_food_provider.dart';
 import 'package:flutter_news/provider/news_headlines_provider.dart';
+import 'package:flutter_news/provider/news_technology_provider.dart';
 import 'package:flutter_news/provider/news_video_provider.dart';
 import 'package:flutter_news/utils/http.dart';
 
@@ -21,7 +22,7 @@ getNewHeadlines(
   } else {
     newsHeadlinesProvider.page = 1;
   }
-  await getRequset("newsHeadlines",
+  await getRequset("newsItems",
           id: "SYLB10,SYDT10",
           action: "down",
           pullNum: newsHeadlinesProvider.page)
@@ -46,7 +47,7 @@ getNewsVideo(bool isLoad, NewsVideoProvider newsVideoProvider) async {
   } else {
     newsVideoProvider.page = 1;
   }
-  await getRequset("newsVideo",
+  await getRequset("newsItems",
           id: "RECOMVIDEO", action: "default", pullNum: newsVideoProvider.page)
       .then((val) {
     if (val != null) {
@@ -71,7 +72,7 @@ getNewsFinance(bool isLoad, NewsFinanceProvider newsFinanceProvider) async {
   } else {
     newsFinanceProvider.page = 1;
   }
-  await getRequset("newsFinance",
+  await getRequset("newsItems",
           id: "CJ33,FOCUSCJ33",
           action: "down",
           pullNum: newsFinanceProvider.page)
@@ -105,7 +106,7 @@ getNewsEntertainment(
   } else {
     newsEntertainmentProvider.page = 1;
   }
-  await getRequset("newsEntertainment",
+  await getRequset("newsItems",
           id: "YL53,FOCUSYL53,SECNAVYL53",
           action: "default",
           pullNum: newsEntertainmentProvider.page)
@@ -116,10 +117,11 @@ getNewsEntertainment(
       List<NewsListModel> newsEntertainmentItems = (data[0]['item'] as List)
           .map((i) => NewsListModel.fromJson(i))
           .toList(); //娱乐新闻列表
-      List<NewsEntertainmentNavModel> newsEntertainmentNavItems =
-          (data[2]['item'] as List)
-              .map((i) => NewsEntertainmentNavModel.fromJson(i))
-              .toList(); //娱乐新闻导航栏
+      /*移除数据中的前2条*/
+      newsEntertainmentItems.removeRange(0, 2);
+      List<NewsNavModel> newsEntertainmentNavItems = (data[2]['item'] as List)
+          .map((i) => NewsNavModel.fromJson(i))
+          .toList(); //娱乐新闻导航栏
       if (isLoad) {
         newsEntertainmentProvider.getLoadEntertainmentData(
             newsEntertainmentNavItems, newsEntertainmentItems);
@@ -138,17 +140,11 @@ getNewsFood(bool isLoad, NewsFoodProvider newsFoodProvider) async {
   } else {
     newsFoodProvider.page = 1;
   }
-  await getRequset("newsFood",
-          id: "DELIC,FOCUSDELIC",
-          page: newsFoodProvider.page,
-          action: "default")
+  await getRequset("newsItems",
+          id: "DELIC,FOCUSDELIC", pullNum: newsFoodProvider.page, action: "up")
       .then((val) {
     if (val != null) {
       List data = json.decode(val.toString());
-      if (data.length <= 0) {
-//        news5GProvider.getLoad5GData([]);
-        return;
-      }
 
       List<NewsListModel> newsFoodItems = (data[0]['item'] as List)
           .map((i) => NewsListModel.fromJson(i))
@@ -163,6 +159,39 @@ getNewsFood(bool isLoad, NewsFoodProvider newsFoodProvider) async {
   });
 }
 
+/*  科技  */
+getNewsTechnology(
+    bool isLoad, NewsTechnologyProvider newsTechnologyProvider) async {
+  if (isLoad) {
+    newsTechnologyProvider.addPage(); //如果是加载，则页数加1
+  } else {
+    newsTechnologyProvider.page = 1;
+  }
+  await getRequset("newsItems",
+          id: "KJ123,FOCUSKJ123,SECNAVKJ123",
+          action: "default",
+          pullNum: newsTechnologyProvider.page)
+      .then((val) {
+    if (val != null) {
+      var data = json.decode(val.toString());
+
+      List<NewsListModel> newsTechnologyItems = (data[0]['item'] as List)
+          .map((i) => NewsListModel.fromJson(i))
+          .toList(); //科技新闻列表
+      List<NewsNavModel> newsTechnologyNavItems = (data[2]['item'] as List)
+          .map((i) => NewsNavModel.fromJson(i))
+          .toList(); //科技新闻导航栏
+      if (isLoad) {
+        newsTechnologyProvider.getLoadTechnologyData(
+            newsTechnologyNavItems, newsTechnologyItems);
+      } else {
+        newsTechnologyProvider.getRefreshTechnologyData(
+            newsTechnologyNavItems, newsTechnologyItems);
+      }
+    }
+  });
+}
+
 /*  5G  */
 getNews5G(bool isLoad, News5GProvider news5GProvider) async {
   if (isLoad) {
@@ -170,7 +199,7 @@ getNews5G(bool isLoad, News5GProvider news5GProvider) async {
   } else {
     news5GProvider.page = 1;
   }
-  await getRequset("news5G", id: "KJ5G,FOCUSKJ5G", page: news5GProvider.page)
+  await getRequset("newsItems", id: "KJ5G,FOCUSKJ5G", page: news5GProvider.page)
       .then((val) {
     if (val != null) {
       List data = json.decode(val.toString());

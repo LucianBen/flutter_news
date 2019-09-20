@@ -10,38 +10,17 @@ const kindUrl = {
   "newsSearch": baseUrl +
       "client_search_hotword?st=15669847706867&sn=b7c6626b7d5a389f404edaa5cf450bd7" +
       configUrl,
-  //新闻-头条
-  "newsHeadlines": baseUrl +
-      "nlist?st=15669750697688&sn=9b26d94cc1671ad9fc2f23e1b11a5465" +
-      configUrl,
-  //新闻-视频
-  "newsVideo": baseUrl +
-      "nlist?st=15669759506571&sn=e358b5be9495b3eb52a562fa8a0a28d0" +
-      configUrl,
-  //新闻-"": baseUrl + "",
-  //新闻-财经
-  "newsFinance": baseUrl +
-      "nlist?st=15669756488660&sn=91c7e68b94fae7a41eecf857710f76a2" +
-      configUrl,
-  //新闻-娱乐
-  "newsEntertainment": baseUrl +
-      "nlist?st=15669838796625&sn=0780eedb18da58532e8da7687ec937c3" +
-      configUrl,
-  //新闻-美食
-  "newsFood": baseUrl +
+  //新闻-链接
+  "newsItems": baseUrl +
       "nlist?st=15669845414595&sn=fa04f09c96f0d4136509a4766993f016" +
-      configUrl,
-  //新闻-科技
-  "newsTechnology": baseUrl +
-      "nlist?id=KJ123,FOCUSKJ123,SECNAVKJ123&st=15669845768647&sn=714005c438e2b2e1a8dd954644c7feae" +
-      configUrl,
-  //新闻-5G
-  "news5G": baseUrl +
-      "nlist?id=KJ5G,FOCUSKJ5G&st=15669847708095&sn=83cc258621610127fdc6c3d7741a3d90" +
       configUrl,
   //新闻-小说
   "newsFiction": webUrl +
       "cid=70004&gv=6.6.5&av=6.6.5&uid=276130dd7d659baa&deviceid=276130dd7d659baa&proid=ifengnews&os=android_25&df=androidphone&vt=5&screen=720x1280&publishid=2011&nw=disconnected&loginid=&st=15669849217573&sn=57b09bea2c72782b5fdf3d5fd6757770",
+  //广场-数据
+  "squareItems": baseUrl +
+      "news_square?st=15689602573665&sn=2078a612e1a9de11a0eeb53d70cb101b" +
+      configUrl,
 };
 
 Future getRequset(String url,

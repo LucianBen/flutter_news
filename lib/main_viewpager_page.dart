@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_news/pages/member_page.dart';
-import 'package:flutter_news/pages/news_page.dart';
-import 'package:flutter_news/pages/square_page.dart';
-import 'package:flutter_news/pages/video_page.dart';
+import 'package:flutter_news/pages/page_member/member_page.dart';
+import 'package:flutter_news/pages/page_news/news_page.dart';
+import 'package:flutter_news/pages/page_square/square_page.dart';
+import 'package:flutter_news/pages/page_video/video_page.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 

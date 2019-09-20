@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_news/model/news_entertainmentNav_model.dart';
+import 'package:flutter_news/model/news_nav_model.dart';
 import 'package:flutter_news/model/news_item_model.dart';
 
 class NewsEntertainmentProvider with ChangeNotifier {
@@ -9,12 +9,12 @@ class NewsEntertainmentProvider with ChangeNotifier {
     page++;
   }
 
-  List<NewsEntertainmentNavModel> newsEntertainmentNavItem = []; //娱乐新闻导航
+  List<NewsNavModel> newsEntertainmentNavItem = []; //娱乐新闻导航
   List<NewsListModel> newsEntertainmentListItem = []; //娱乐新闻列表
   List<NewsListModel> newsEntertainmentSwiperListItem = []; //娱乐新闻Swiper
 
   void getLoadEntertainmentData(
-      List<NewsEntertainmentNavModel> newsEntertainmentNavItemList,
+      List<NewsNavModel> newsEntertainmentNavItemList,
       List<NewsListModel> newsEntertainmentItemList) {
     newsEntertainmentNavItem = newsEntertainmentNavItemList;
     newsEntertainmentListItem.addAll(newsEntertainmentItemList);
@@ -22,7 +22,7 @@ class NewsEntertainmentProvider with ChangeNotifier {
   }
 
   void getRefreshEntertainmentData(
-      List<NewsEntertainmentNavModel> newsEntertainmentNavItemList,
+      List<NewsNavModel> newsEntertainmentNavItemList,
       List<NewsListModel> newsEntertainmentItemList) {
     newsEntertainmentNavItem = newsEntertainmentNavItemList;
     newsEntertainmentListItem = newsEntertainmentItemList;
