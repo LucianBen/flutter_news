@@ -52,10 +52,6 @@ class SquarePage extends StatelessWidget {
               squareProvider.squareNav = dataSquareNavList
                   .map((i) => NewsNavModel.fromJson(i))
                   .toList();
-              //热议
-//              squareProvider.titleIcon = squareHotwordModel.chConfig.titleIcon;
-//              squareProvider.desc = squareHotwordModel.chConfig.desc;
-//              squareProvider.squareHotword = squareHotwordModel.item;
               //广场前4个类型
               List tempList = dataSquareList;
               tempList.removeRange(5, tempList.length);
@@ -106,11 +102,10 @@ class SquarePage extends StatelessWidget {
   Widget _newsSquareBody(SquareProvider squareProvider) {
     return ListView(
       children: <Widget>[
-        squareNav(squareProvider.squareNav),
-        squareHot(squareHotwordModel),
-        squareHour(squareProvider.squareTypeList[0]),
-        squareSpotlight(squareProvider.squareTypeList[1]),
-        squareAudiobook(squareProvider.squareTypeList[2]),
+        SquareModule1(squareProvider.squareNav, squareHotwordModel,
+            squareProvider.squareTypeList[0]),
+        SquareSpotlight(squareProvider.squareTypeList[1]),
+        SquareAudiobook(squareProvider.squareTypeList[2]),
         squareBoutique(squareProvider.squareTypeList[3]),
         squareVideo(squareProvider.squareList)
       ],

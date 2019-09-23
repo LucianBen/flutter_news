@@ -365,7 +365,8 @@ class NavItem extends StatelessWidget {
         child: Column(
           children: <Widget>[
             Image.network(list[index].thumbnail, fit: BoxFit.fill),
-            Text(list[index].title)
+            Text(list[index].title,
+                style: TextStyle(fontSize: ScreenUtil().setSp(30)))
           ],
         ),
       ),
