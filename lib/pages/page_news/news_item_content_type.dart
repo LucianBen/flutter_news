@@ -303,47 +303,9 @@ class NewsItemsVideo extends StatelessWidget {
 
 /// 新闻-内容-item的底部布局，有来源、评论和关闭
 Widget _itemBottomLayout(List<NewsListModel> itemList, int index) {
-  String commitAll = itemList[index].commentsall.toString();
-  if (commitAll == "0") {
-    commitAll = "";
-  } else {
-    commitAll = "${itemList[index].commentsall}评";
-  }
-  return Container(
-    margin: EdgeInsets.only(top: 10),
-    child: Stack(
-      children: <Widget>[
-        Row(
-          children: <Widget>[
-            Text(
-              itemList[index].source == null
-                  ? itemList[index].subscribe.catename == null
-                      ? ""
-                      : itemList[index].subscribe.catename
-                  : itemList[index].source,
-              style: TextStyle(fontSize: ScreenUtil().setSp(30)),
-            ),
-            Text(
-              "    $commitAll",
-              style: TextStyle(fontSize: ScreenUtil().setSp(30)),
-            ),
-          ],
-        ),
-        Positioned(
-          right: 15,
-          top: 0,
-          child: InkWell(
-            onTap: () {
-              print("点击了X");
-            },
-            child: Image.asset("images/close.png",
-                width: ScreenUtil().setWidth(30),
-                height: ScreenUtil().setHeight(30)),
-          ),
-        ),
-      ],
-    ),
-  );
+  return ItemBottomLayout(
+      '${itemList[index].source == null ? itemList[index].subscribe.catename == null ? "" : itemList[index].subscribe.catename : itemList[index].source}',
+      "${itemList[index].commentsall.toString() == "0" ? '' : '${itemList[index].commentsall}评'}");
 }
 
 /// 新闻-导航 由图片和文字组成
@@ -366,9 +328,56 @@ class NavItem extends StatelessWidget {
           children: <Widget>[
             Image.network(list[index].thumbnail, fit: BoxFit.fill),
             Text(list[index].title,
-                style: TextStyle(fontSize: ScreenUtil().setSp(30)))
+                style: TextStyle(fontSize: ScreenUtil().setSp(35)))
           ],
         ),
+      ),
+    );
+  }
+}
+
+/*
+*
+* */
+
+class ItemBottomLayout extends StatelessWidget {
+  String source;
+  String commentsall;
+
+  ItemBottomLayout(this.source, this.commentsall);
+
+  @override
+  Widget build(BuildContext context) {
+    commentsall = "${commentsall == '0' ? '' : '$commentsall评'}";
+    return Container(
+      margin: EdgeInsets.only(top: 10),
+      child: Stack(
+        children: <Widget>[
+          Row(
+            children: <Widget>[
+              Text(
+                source,
+                style: TextStyle(fontSize: ScreenUtil().setSp(35)),
+              ),
+              Text(
+                "    $commentsall",
+                style: TextStyle(fontSize: ScreenUtil().setSp(35)),
+              ),
+            ],
+          ),
+          Positioned(
+            right: 10,
+            top: 0,
+            child: InkWell(
+              onTap: () {
+                print("点击了X");
+              },
+              child: Image.asset("images/close.png",
+                  width: ScreenUtil().setWidth(30),
+                  height: ScreenUtil().setHeight(30)),
+            ),
+          ),
+        ],
       ),
     );
   }

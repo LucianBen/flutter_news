@@ -28,6 +28,10 @@ class ThemeColors {
 
   static Color colorGreen = const Color(0xFF11D371);
 
+  static Color colorOrange = const Color(0xFFFF7900);
+
+  static Color colorBule = const Color(0xFF3091F5);
+
   ///主色调，按钮，特殊需要强调和突出的文字
 //  static Color colorTheme = Color.fromARGB(255, 255, 134, 0);
 

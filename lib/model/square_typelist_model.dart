@@ -13,6 +13,11 @@ class SquareTypeListModel {
   String comments;
   String commentsall;
   List<MarqueeList> marqueeList;
+  List<Relation> relation;
+  String showType;
+  String source;
+  String thumbnail;
+  String subTitle;
 
   SquareTypeListModel(
       {this.type,
@@ -28,7 +33,12 @@ class SquareTypeListModel {
       this.intro,
       this.comments,
       this.commentsall,
-      this.marqueeList});
+      this.marqueeList,
+      this.relation,
+      this.thumbnail,
+      this.source,
+      this.showType,
+      this.subTitle});
 
   SquareTypeListModel.fromJson(Map<String, dynamic> json) {
     type = json['type'];
@@ -50,6 +60,16 @@ class SquareTypeListModel {
         marqueeList.add(new MarqueeList.fromJson(v));
       });
     }
+    if (json['relation'] != null) {
+      relation = new List<Relation>();
+      json['relation'].forEach((v) {
+        relation.add(new Relation.fromJson(v));
+      });
+    }
+    thumbnail = json['thumbnail'];
+    source = json['source'];
+    showType = json['showType'];
+    subTitle = json['subTitle'];
   }
 
   Map<String, dynamic> toJson() {
@@ -74,6 +94,13 @@ class SquareTypeListModel {
     if (this.marqueeList != null) {
       data['marqueeList'] = this.marqueeList.map((v) => v.toJson()).toList();
     }
+    if (this.relation != null) {
+      data['relation'] = this.relation.map((v) => v.toJson()).toList();
+    }
+    data['thumbnail'] = this.thumbnail;
+    data['source'] = this.source;
+    data['showType'] = this.showType;
+    data['subTitle'] = this.subTitle;
     return data;
   }
 }
@@ -119,6 +146,8 @@ class MarqueeList {
   String notShowDislikeReason;
   String reftype;
   String intro;
+  String source;
+  String columnName;
 
   MarqueeList(
       {this.type,
@@ -137,7 +166,9 @@ class MarqueeList {
       this.link,
       this.notShowDislikeReason,
       this.reftype,
-      this.intro});
+        this.intro,
+      this.source,
+      this.columnName});
 
   MarqueeList.fromJson(Map<String, dynamic> json) {
     type = json['type'];
@@ -160,6 +191,8 @@ class MarqueeList {
     notShowDislikeReason = json['notShowDislikeReason'];
     reftype = json['reftype'];
     intro = json['intro'];
+    source = json['source'];
+    columnName = json['columnName'];
   }
 
   Map<String, dynamic> toJson() {
@@ -189,6 +222,107 @@ class MarqueeList {
     data['notShowDislikeReason'] = this.notShowDislikeReason;
     data['reftype'] = this.reftype;
     data['intro'] = this.intro;
+    data['source'] = this.source;
+    data['columnName'] = this.columnName;
+    return data;
+  }
+}
+
+class Relation {
+  String type;
+  String thumbnail;
+  String title;
+  String id;
+  String documentId;
+  String staticId;
+  String pv;
+  Null updateTime;
+  Style style;
+  List<Relation1> relation;
+  String reftype;
+  String recomToken;
+  String payload;
+  Link link;
+
+  Relation(
+      {this.type,
+      this.thumbnail,
+      this.title,
+      this.id,
+      this.documentId,
+      this.staticId,
+      this.pv,
+      this.updateTime,
+      this.style,
+      this.relation,
+      this.reftype,
+      this.recomToken,
+      this.payload,
+      this.link});
+
+  Relation.fromJson(Map<String, dynamic> json) {
+    type = json['type'];
+    thumbnail = json['thumbnail'];
+    title = json['title'];
+    id = json['id'];
+    documentId = json['documentId'];
+    staticId = json['staticId'];
+    pv = json['pv'];
+    updateTime = json['updateTime'];
+    style = json['style'] != null ? new Style.fromJson(json['style']) : null;
+    if (json['relation'] != null) {
+      relation = new List<Relation1>();
+      json['relation'].forEach((v) {
+        relation.add(new Relation1.fromJson(v));
+      });
+    }
+    reftype = json['reftype'];
+    recomToken = json['recomToken'];
+    payload = json['payload'];
+    link = json['link'] != null ? new Link.fromJson(json['link']) : null;
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['type'] = this.type;
+    data['thumbnail'] = this.thumbnail;
+    data['title'] = this.title;
+    data['id'] = this.id;
+    data['documentId'] = this.documentId;
+    data['staticId'] = this.staticId;
+    data['pv'] = this.pv;
+    data['updateTime'] = this.updateTime;
+    if (this.style != null) {
+      data['style'] = this.style.toJson();
+    }
+    if (this.relation != null) {
+      data['relation'] = this.relation.map((v) => v.toJson()).toList();
+    }
+    data['reftype'] = this.reftype;
+    data['recomToken'] = this.recomToken;
+    data['payload'] = this.payload;
+    if (this.link != null) {
+      data['link'] = this.link.toJson();
+    }
+    return data;
+  }
+}
+
+class Relation1 {
+  String title;
+  String id;
+
+  Relation1({this.title, this.id});
+
+  Relation1.fromJson(Map<String, dynamic> json) {
+    title = json['title'];
+    id = json['id'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['title'] = this.title;
+    data['id'] = this.id;
     return data;
   }
 }
@@ -248,13 +382,17 @@ class Link {
   String type;
   String url;
   String weburl;
+  String title;
+  String openType;
 
-  Link({this.type, this.url, this.weburl});
+  Link({this.type, this.url, this.weburl, this.title, this.openType});
 
   Link.fromJson(Map<String, dynamic> json) {
     type = json['type'];
     url = json['url'];
     weburl = json['weburl'];
+    title = json['title'];
+    openType = json['openType'];
   }
 
   Map<String, dynamic> toJson() {
@@ -262,6 +400,8 @@ class Link {
     data['type'] = this.type;
     data['url'] = this.url;
     data['weburl'] = this.weburl;
+    data['title'] = this.title;
+    data['openType'] = this.openType;
     return data;
   }
 }

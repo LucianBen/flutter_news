@@ -20,6 +20,8 @@ class NewsListModel {
   String simId;
   String recomToken;
   String intro;
+  String navigationIcon;
+  String navigationTitle;
 
   NewsListModel(
       {this.type,
@@ -40,7 +42,9 @@ class NewsListModel {
       this.reftype,
       this.simId,
       this.recomToken,
-      this.intro});
+      this.intro,
+      this.navigationIcon,
+      this.navigationTitle});
 
   NewsListModel.fromJson(Map<String, dynamic> json) {
     type = json['type'];
@@ -66,6 +70,8 @@ class NewsListModel {
     simId = json['simId'];
     recomToken = json['recomToken'];
     intro = json['intro'];
+    navigationIcon = json['navigationIcon'];
+    navigationTitle = json['navigationTitle'];
   }
 
   Map<String, dynamic> toJson() {
@@ -95,6 +101,8 @@ class NewsListModel {
     data['simId'] = this.simId;
     data['recomToken'] = this.recomToken;
     data['intro'] = this.intro;
+    data['navigationIcon'] = this.navigationIcon;
+    data['navigationTitle'] = this.navigationTitle;
     return data;
   }
 }
@@ -139,7 +147,8 @@ class Style {
 
   Style.fromJson(Map<String, dynamic> json) {
     type = json['type'];
-    images = json['images'] == null ? ["","",""] : json['images'].cast<String>();
+    images =
+        json['images'] == null ? ["", "", ""] : json['images'].cast<String>();
     backreason =
         json['backreason'] == null ? [] : json['backreason'].cast<String>();
     defaultreason = json['defaultreason'];

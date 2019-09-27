@@ -7,8 +7,11 @@ import 'package:flutter_news/model/news_nav_model.dart';
 import 'package:flutter_news/model/square_hotword_model.dart';
 import 'package:flutter_news/model/square_typelist_model.dart';
 import 'package:flutter_news/pages/page_news/appbar_widget.dart';
+import 'package:flutter_news/pages/page_news/news_item_content_type.dart';
 import 'package:flutter_news/provider/square_provider.dart';
+import 'package:flutter_news/utils/ThemeColors.dart';
 import 'package:flutter_news/utils/http.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
 import '../no_data.dart';
@@ -53,14 +56,15 @@ class SquarePage extends StatelessWidget {
                   .map((i) => NewsNavModel.fromJson(i))
                   .toList();
               //广场前4个类型
-              List tempList = dataSquareList;
-              tempList.removeRange(5, tempList.length);
-              squareProvider.squareTypeList =
-                  tempList.map((i) => SquareTypeListModel.fromJson(i)).toList();
+              squareProvider.squareTypeList = dataSquareList
+                  .sublist(0, 4)
+                  .map((i) => SquareTypeListModel.fromJson(i))
+                  .toList();
               //广场后面的视频item
-              dataSquareList.removeRange(0, 4);
-              squareProvider.squareList =
-                  dataSquareList.map((i) => NewsListModel.fromJson(i)).toList();
+              squareProvider.squareList = dataSquareList
+                  .sublist(4)
+                  .map((i) => NewsListModel.fromJson(i))
+                  .toList();
             }
 
             return _netRefreshLoad(squareProvider);
@@ -106,9 +110,27 @@ class SquarePage extends StatelessWidget {
             squareProvider.squareTypeList[0]),
         SquareSpotlight(squareProvider.squareTypeList[1]),
         SquareAudiobook(squareProvider.squareTypeList[2]),
-        squareBoutique(squareProvider.squareTypeList[3]),
-        squareVideo(squareProvider.squareList)
+        SquareBoutique(squareProvider.squareTypeList[3]),
+        _newsItemTile(squareProvider.squareList[0]),
+        ListView.builder(
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
+            itemCount: squareProvider.squareList.length,
+            itemBuilder: (context, index) {
+              return NewsItemsVideo(squareProvider.squareList, index);
+            }),
       ],
+    );
+  }
+
+  Widget _newsItemTile(NewsListModel itemVideoTile) {
+    return Container(
+      color: ThemeColors.colorWhite,
+      padding: EdgeInsets.only(left: 10, top: 10),
+      height: ScreenUtil().setHeight(90),
+      width: ScreenUtil().setWidth(1080),
+      child: SquareTitle(
+          itemVideoTile.navigationIcon, itemVideoTile.navigationTitle),
     );
   }
 }

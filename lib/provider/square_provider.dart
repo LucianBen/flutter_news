@@ -18,15 +18,15 @@ class SquareProvider with ChangeNotifier {
   List<NewsListModel> squareList = [];
 
   void getLoadSquareData(List<NewsListModel> squareItemList) {
-    squareList = squareItemList;
+    squareList.addAll(squareItemList);
     notifyListeners();
   }
 
   void getRefreshSquareData(
-      List<SquareHotwordItem> squareHotwordItemList,
+      SquareHotwordModel squareHotwordItemList,
       List<SquareTypeListModel> squareTypeItemList,
       List<NewsListModel> squareItemList) {
-    squareHotword.item = squareHotwordItemList;
+    squareHotword = squareHotwordItemList;
     squareTypeList = squareTypeItemList;
     squareList = squareItemList;
     notifyListeners();
