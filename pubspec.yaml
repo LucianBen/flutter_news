@@ -60,6 +60,8 @@ flutter:
     - images/tag_video_list_more_tools.png
     - images/tag_video_support_click.png
     - images/tag_video_support_unclick.png
+    #我的
+    - images/appwidget_next_btn_default.png
 
     - images/2.0x/news/news_1.png
     - images/2.0x/news/news_2.png

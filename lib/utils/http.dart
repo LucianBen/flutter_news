@@ -54,9 +54,11 @@ Future getRequset(String url,
       return response.data;
     } else
       throw Exception("请求出错");
-  } catch (DioError) {
+  }
+  /*catch (DioError) {
     print(DioError.message);
-  } catch (e) {
+  } */
+  catch (e) {
     return print("错误原因====" + e);
   }
 }
