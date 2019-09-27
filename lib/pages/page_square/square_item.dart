@@ -86,7 +86,9 @@ class SquareModule1 extends StatelessWidget {
         child: Row(
           children: <Widget>[
             Text(
-              "$data   ",
+              "$data  ",
+              overflow: TextOverflow.ellipsis,
+              softWrap: false,
               style: TextStyle(fontSize: ScreenUtil().setSp(40)),
             ),
             Image.network(
