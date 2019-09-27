@@ -14,6 +14,9 @@ const kindUrl = {
   "newsItems": baseUrl +
       "nlist?st=15669845414595&sn=fa04f09c96f0d4136509a4766993f016" +
       configUrl,
+  //新闻-财经实时指数
+  "newsFinanceRealtime": baseUrl +
+      "finance_a_and_hk_stock_market?&st=15689598037244&sn=c0bc3934cfb7315e7c4f79f77066783b",
   //新闻-小说
   "newsFiction": webUrl +
       "cid=70004&gv=6.6.5&av=6.6.5&uid=276130dd7d659baa&deviceid=276130dd7d659baa&proid=ifengnews&os=android_25&df=androidphone&vt=5&screen=720x1280&publishid=2011&nw=disconnected&loginid=&st=15669849217573&sn=57b09bea2c72782b5fdf3d5fd6757770",

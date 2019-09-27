@@ -142,7 +142,6 @@ class StyleLiveRoom {
   }
 }
 
-
 class Link {
   String type;
   String url;
@@ -164,6 +163,55 @@ class Link {
     data['url'] = this.url;
     data['openType'] = this.openType;
     data['weburl'] = this.weburl;
+    return data;
+  }
+}
+
+class NewsFinanceRealtime{
+  String name;
+  String last;
+  String hstClose;
+  String chg;
+  String chgPct;
+  String open;
+  String high;
+  String low;
+  String time;
+
+  NewsFinanceRealtime(
+      {this.name,
+        this.last,
+        this.hstClose,
+        this.chg,
+        this.chgPct,
+        this.open,
+        this.high,
+        this.low,
+        this.time});
+
+  NewsFinanceRealtime.fromJson(Map<String, dynamic> json) {
+    name = json['name'];
+    last = json['last'];
+    hstClose = json['hst_close'];
+    chg = json['chg'];
+    chgPct = json['chg_pct'];
+    open = json['open'];
+    high = json['high'];
+    low = json['low'];
+    time = json['time'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['name'] = this.name;
+    data['last'] = this.last;
+    data['hst_close'] = this.hstClose;
+    data['chg'] = this.chg;
+    data['chg_pct'] = this.chgPct;
+    data['open'] = this.open;
+    data['high'] = this.high;
+    data['low'] = this.low;
+    data['time'] = this.time;
     return data;
   }
 }

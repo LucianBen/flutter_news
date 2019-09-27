@@ -1,30 +1,50 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_news/model/news_finance_model.dart';
 import 'package:flutter_news/utils/ThemeColors.dart';
+import 'package:flutter_news/utils/http.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 //财经实时消息
 class FundIndex extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-        width: ScreenUtil().setWidth(1080),
-        height: ScreenUtil().setHeight(280),
-        alignment: Alignment.center,
-        decoration: BoxDecoration(
-            color: ThemeColors.colorWhite,
-            border:
-                Border(bottom: BorderSide(color: ThemeColors.colorBackground))),
-        child: Row(
-          children: <Widget>[
-            fundIndexItem(true),
-            fundIndexItem(false),
-            fundIndexItem(true),
-          ],
-        ));
+//    Timer.periodic(Duration(seconds: 60), (timer) {
+//
+//    });
+
+    return FutureBuilder(
+        future: getRequset("newsFinanceRealtime"),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            List<NewsFinanceRealtime> realtime =
+                (json.decode(snapshot.data.toString()) as List)
+                    .map((i) => NewsFinanceRealtime.fromJson(i))
+                    .toList();
+            return Container(
+              width: ScreenUtil().setWidth(1080),
+              height: ScreenUtil().setHeight(280),
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                  color: ThemeColors.colorWhite,
+                  border: Border(
+                      bottom: BorderSide(color: ThemeColors.colorBackground))),
+              child: Row(
+                children: <Widget>[
+                  fundIndexItem(context, realtime[0]),
+                  fundIndexItem(context, realtime[1]),
+                  fundIndexItem(context, realtime[5]),
+                ],
+              ),
+            );
+          } else {
+            return Container();
+          }
+        });
   }
 
-  Widget fundIndexItem(bool isRed) {
+  fundIndexItem(BuildContext context, NewsFinanceRealtime realtime) {
     return Container(
       width: ScreenUtil().setWidth(360),
       decoration: BoxDecoration(
@@ -34,22 +54,26 @@ class FundIndex extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Text(
-            "上证指数",
+            "${realtime.name}",
             style: TextStyle(
                 fontSize: ScreenUtil().setSp(40),
                 color: ThemeColors.colorBlack),
           ),
           Text(
-            "3034.69",
+            "${realtime.last}",
             style: TextStyle(
                 fontSize: ScreenUtil().setSp(50),
-                color: isRed ? ThemeColors.colorRed : ThemeColors.colorGreen),
+                color: double.parse(realtime.chg) < 0
+                    ? ThemeColors.colorGreen
+                    : ThemeColors.colorRed),
           ),
           Text(
-            "3.29  0.56%",
+            "${realtime.chg}  ${realtime.chgPct}%",
             style: TextStyle(
                 fontSize: ScreenUtil().setSp(40),
-                color: isRed ? ThemeColors.colorRed : ThemeColors.colorGreen),
+                color: double.parse(realtime.chg) < 0
+                    ? ThemeColors.colorGreen
+                    : ThemeColors.colorRed),
           ),
         ],
       ),
