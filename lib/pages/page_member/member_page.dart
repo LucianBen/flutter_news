@@ -1,60 +1,74 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_news/pages/page_video/video_item.dart';
 import 'package:flutter_news/utils/ThemeColors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MemberPage extends StatelessWidget {
+  final List<String> titleList = [
+    "",
+    "",
+    "我的消息",
+    "养生答题",
+    "我的钱包",
+    "我的已购",
+    "我的书架",
+    "我的缓存",
+    "",
+    "金币商城",
+    "管理大风号",
+    "",
+    "投诉反馈",
+    "设置",
+  ];
+  final List subtitle = [
+    "",
+    "",
+    "评论点赞/系统通知",
+    "破谣言赢养生佳品",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "免费抢全国25城中医问诊名",
+    "",
+    "",
+    "",
+    "",
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: 100),
-      child: _memberItem(),
+      width: ScreenUtil().setWidth(1080),
+      margin: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
+      child: ListView.builder(
+          itemCount: 14,
+          itemBuilder: (context, index) {
+            switch (index) {
+              case 0:
+                return UnLoginSign();
+                break;
+              case 1:
+                return UnLoginRegister();
+                break;
+              case 8:
+              case 11:
+                return _blankCross();
+                break;
+              default:
+                return MemberItem(titleList[index], subtitle[index]);
+                break;
+            }
+          }),
     );
   }
-}
 
-Widget _memberItem() {
-  return Container(
-    color: ThemeColors.colorWhite,
-    height: ScreenUtil().setHeight(150),
-    padding: EdgeInsets.only(left: 15),
-    child: Column(
-      mainAxisAlignment: MainAxisAlignment.end,
-      children: <Widget>[
-        Row(
-          children: <Widget>[
-            Container(
-              alignment: Alignment.centerLeft,
-              height: ScreenUtil().setHeight(140),
-              width: ScreenUtil().setWidth(310),
-              child: Text(
-                "Title",
-                style: TextStyle(
-                    fontSize: ScreenUtil().setSp(45),
-                    color: ThemeColors.colorBlack),
-              ),
-            ),
-            Container(
-              alignment: Alignment.centerRight,
-              width: ScreenUtil().setWidth(650),
-              height: ScreenUtil().setHeight(140),
-              padding: EdgeInsets.only(right: 10),
-              child: Text(
-                "SUBTITLE",
-                textAlign: TextAlign.end,
-                style: TextStyle(fontSize: ScreenUtil().setSp(40)),
-              ),
-            ),
-            Image.asset(
-              "images/appwidget_next_btn_default.png",
-              width: ScreenUtil().setWidth(80),
-            ),
-          ],
-        ),
-        Container(
-          color: ThemeColors.colorGrey_10,
-          height: 0.5,
-        )
-      ],
-    ),
-  );
+  Widget _blankCross() {
+    return Container(
+      height: ScreenUtil().setHeight(20),
+      width: ScreenUtil().setWidth(1080),
+      color: ThemeColors.colorGrey_10,
+    );
+  }
 }
