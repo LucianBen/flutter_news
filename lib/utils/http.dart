@@ -20,6 +20,9 @@ const kindUrl = {
   //新闻-小说
   "newsFiction": webUrl +
       "cid=70004&gv=6.6.5&av=6.6.5&uid=276130dd7d659baa&deviceid=276130dd7d659baa&proid=ifengnews&os=android_25&df=androidphone&vt=5&screen=720x1280&publishid=2011&nw=disconnected&loginid=&st=15669849217573&sn=57b09bea2c72782b5fdf3d5fd6757770",
+  //视频-数据
+  "videoItems": baseUrl +
+      "nlist?id=VIDEOSHORT&action=down&pullNum=1&dailyOpenNum=1&province=%E4%B8%8A%E6%B5%B7%E5%B8%82&city=%E4%B8%8A%E6%B5%B7%E5%B8%82&district=%E5%BE%90%E6%B1%87%E5%8C%BA&gv=6.7.0&av=6.7.0&uid=866179039382978&deviceid=866179039382978&proid=ifengnews&os=android_22&df=androidphone&vt=5&screen=720x1280&publishid=7528&nw=wifi&loginid=&st=15697395306779&sn=a2ca66617478981b3ee6d8fce734d9e8&dlt=31.164112&dln=121.440505&dcy=%E4%B8%8A%E6%B5%B7%E5%B8%82&dpr=%E4%B8%8A%E6%B5%B7%E5%B8%82&skinid=default",
   //广场-数据
   "squareItems": baseUrl +
       "news_square?st=15689602573665&sn=2078a612e1a9de11a0eeb53d70cb101b" +

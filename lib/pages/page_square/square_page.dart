@@ -31,13 +31,13 @@ class SquarePage extends StatelessWidget {
           },
         ),
       ),
-      body: NetArchitecture(),
+      body: _netArchitecture(),
     );
   }
 
   SquareHotwordModel squareHotwordModel;
 
-  Widget NetArchitecture() {
+  Widget _netArchitecture() {
     return FutureBuilder(
       future: getRequset("squareItems", action: "default"),
       builder: (context, snapshot) {

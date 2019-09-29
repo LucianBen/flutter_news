@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_news/provider/video_provider.dart';
 import 'package:flutter_news/provider/main_viewpager_provider.dart';
 import 'package:flutter_news/provider/news_entertainment_provider.dart';
 import 'package:flutter_news/provider/news_finance_provider.dart';
@@ -25,6 +26,7 @@ void main() {
       ChangeNotifierProvider.value(value: NewsTechnologyProvider()),
       ChangeNotifierProvider.value(value: News5GProvider()),
       ChangeNotifierProvider.value(value: SquareProvider()),
+      ChangeNotifierProvider.value(value: VideoProvider()),
     ],
     child: MyApp(),
   ));
