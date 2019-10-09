@@ -50,18 +50,16 @@ Future getRequset(String url,
   dio.options.responseType = ResponseType.plain;
   dio.options.connectTimeout = 5000;
   dio.options.receiveTimeout = 3000;
-  print("------------------${kindUrl[url]}$otherUrl");
+//  print("------------------${kindUrl[url]}$otherUrl");
   try {
     Response response = await dio.get("${kindUrl[url]}$otherUrl");
     if (response.statusCode == 200) {
       return response.data;
     } else
       throw Exception("请求出错");
-  }
-  /*catch (DioError) {
+  } catch (DioError) {
     print(DioError.message);
-  } */
-  catch (e) {
+  } catch (e) {
     return print("错误原因====" + e);
   }
 }
@@ -78,6 +76,20 @@ Future postRequest(url, {formData}) async {
       response = await dio.post(kindUrl[url], data: formData);
     }
 
+    if (response.statusCode == 200) {
+      return response.data;
+    } else
+      throw Exception("请求出错");
+  } catch (e) {
+    return print("错误原因====" + e);
+  }
+}
+
+Future getUrl(String url) async {
+  Dio dio = Dio();
+  dio.options.responseType = ResponseType.plain;
+  try {
+    Response response = await dio.get(url);
     if (response.statusCode == 200) {
       return response.data;
     } else

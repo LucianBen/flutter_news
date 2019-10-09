@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_news/router/base_router.dart';
 import 'package:flutter_news/utils/ThemeColors.dart';
+import 'package:flutter_news/utils/url_util.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 
@@ -181,13 +183,13 @@ class NewsHeadlineItemsSingleImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(top: 1),
-//      height: ScreenUtil().setHeight(340),
       width: ScreenUtil().setWidth(1080),
       padding: EdgeInsets.all(10),
       color: ThemeColors.colorWhite,
       child: InkWell(
         onTap: () {
-          print("===== 单图展示 ----------> ${itemList[index]}");
+          BaseRouter.router.navigateTo(context,
+              "${BaseRouter.detailPage}?url=${UrlUtil(itemList[index]['link']['url'])}");
         },
         child: Column(
           children: <Widget>[
@@ -237,7 +239,8 @@ class NewsHeadlineItemsSlideImage extends StatelessWidget {
         color: ThemeColors.colorWhite,
         child: InkWell(
           onTap: () {
-            print("点击多张图");
+            BaseRouter.router.navigateTo(context,
+                "${BaseRouter.detailPage}?url=${UrlUtil(itemList[index]['link']['url'])}");
           },
           child: Column(
             children: <Widget>[
@@ -297,7 +300,8 @@ class NewsHeadlineItemsVideo extends StatelessWidget {
         color: ThemeColors.colorWhite,
         child: InkWell(
           onTap: () {
-            print("点击视频");
+            BaseRouter.router.navigateTo(context,
+                "${BaseRouter.detailVideoPage}?id=${itemList[index]['id']}");
           },
           child: Column(
             children: <Widget>[
@@ -332,9 +336,9 @@ Widget _itemBottomLayout(itemList, int index) {
   } else {
     commitAll = "${itemList[index]['commentsall']}评";
   }
-  print("##############################${index}");
-  print("###${itemList[index]['source']}");
-  print("###${itemList[index]['subscribe']}");
+//  print("##############################${index}");
+//  print("###${itemList[index]['source']}");
+//  print("###${itemList[index]['subscribe']}");
   return Container(
     margin: EdgeInsets.only(top: 10),
     child: Stack(

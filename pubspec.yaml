@@ -31,6 +31,8 @@ dependencies:
   dio: ^2.1.13
   video_player: ^0.6.4
   flutter_webview_plugin: ^0.3.8
+  fluro: ^1.5.1
+  flutter_html: ^0.11.0
 
 dev_dependencies:
   flutter_test:
@@ -60,6 +62,7 @@ flutter:
     - images/tag_video_list_more_tools.png
     - images/tag_video_support_click.png
     - images/tag_video_support_unclick.png
+    - images/zzplay_loading_failure_day.png
     #小视频
     - images/horizontal_shortvideo_like_icon.png
     #我的
@@ -132,6 +135,15 @@ flutter:
     - images/2.0x/account/account_13.png
     - images/2.0x/account/account_14.png
     - images/2.0x/account/account_15.png
+
+    # 文章详情
+    - images/icon_follow_each_other_normal.png
+    - images/icon_follow_normal.png
+    - images/icon_followed_normal.png
+    - images/share_card_wemedia.png
+    - images/bottom_bar_emoji_icon.png
+    - images/likeview_heart_default.png
+    - images/likeview_heart_default_like.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

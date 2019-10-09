@@ -25,16 +25,20 @@ class MainViewpagerPage extends StatelessWidget {
           entry: ImagesAnimationEntry(1, 15, "images/2.0x/video/video_%s.png")),
     ),
     BottomNavigationBarItem(
-      icon: Image.asset("images/2.0x/square/square_1.png", width: 30, height: 30),
+      icon:
+          Image.asset("images/2.0x/square/square_1.png", width: 30, height: 30),
       title: Text("广场"),
       activeIcon: ImagesAnimation(
-          entry: ImagesAnimationEntry(1, 14, "images/2.0x/square/square_%s.png")),
+          entry:
+              ImagesAnimationEntry(1, 14, "images/2.0x/square/square_%s.png")),
     ),
     BottomNavigationBarItem(
-      icon: Image.asset("images/2.0x/account/account_1.png", width: 30, height: 30),
+      icon: Image.asset("images/2.0x/account/account_1.png",
+          width: 30, height: 30),
       title: Text("未登录"),
       activeIcon: ImagesAnimation(
-          entry: ImagesAnimationEntry(1, 15, "images/2.0x/account/account_%s.png")),
+          entry: ImagesAnimationEntry(
+              1, 15, "images/2.0x/account/account_%s.png")),
     )
   ];
 

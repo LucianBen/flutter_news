@@ -1,5 +1,5 @@
+import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_news/provider/video_provider.dart';
 import 'package:flutter_news/provider/main_viewpager_provider.dart';
 import 'package:flutter_news/provider/news_entertainment_provider.dart';
 import 'package:flutter_news/provider/news_finance_provider.dart';
@@ -7,11 +7,13 @@ import 'package:flutter_news/provider/news_headlines_provider.dart';
 import 'package:flutter_news/provider/news_technology_provider.dart';
 import 'package:flutter_news/provider/news_video_provider.dart';
 import 'package:flutter_news/provider/square_provider.dart';
+import 'package:flutter_news/provider/video_provider.dart';
 import 'package:provider/provider.dart';
 
 import 'main_viewpager_page.dart';
 import 'provider/news_5G_provider.dart';
 import 'provider/news_food_provider.dart';
+import 'router/base_router.dart';
 import 'utils/ThemeColors.dart';
 
 void main() {
@@ -35,10 +37,14 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final router = Router();
+    BaseRouter.configureRouter(router);
+    BaseRouter.router = router;
     return MaterialApp(
-      title: '凤凰新闻',
-      theme: ThemeData(primaryColor: ThemeColors.colorTheme),
-      home: MainViewpagerPage(),
-    );
+        title: '凤凰新闻',
+        theme: ThemeData(primaryColor: ThemeColors.colorTheme),
+        onGenerateRoute: BaseRouter.router.generator,
+        home: MainViewpagerPage());
+
   }
 }

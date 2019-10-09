@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_news/model/news_item_model.dart';
+import 'package:flutter_news/router/base_router.dart';
 import 'package:flutter_news/utils/ThemeColors.dart';
+import 'package:flutter_news/utils/url_util.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 
@@ -117,7 +119,8 @@ class NewsItemsSingleImage extends StatelessWidget {
       color: ThemeColors.colorWhite,
       child: InkWell(
         onTap: () {
-          print("===== 单图展示 ----------> ${itemList[index]}");
+          BaseRouter.router.navigateTo(context,
+              "${BaseRouter.detailPage}?url=${UrlUtil(itemList[index].link.url)}");
         },
         child: Column(
           children: <Widget>[
@@ -167,8 +170,8 @@ class NewsItemsSlideImage extends StatelessWidget {
         color: ThemeColors.colorWhite,
         child: InkWell(
           onTap: () {
-            print("点击多张图");
-          },
+            BaseRouter.router.navigateTo(context,
+                "${BaseRouter.detailPage}?url=${UrlUtil(itemList[index].link.url)}");          },
           child: Column(
             children: <Widget>[
               Container(
@@ -335,10 +338,6 @@ class NavItem extends StatelessWidget {
     );
   }
 }
-
-/*
-*
-* */
 
 class ItemBottomLayout extends StatelessWidget {
   String source;
